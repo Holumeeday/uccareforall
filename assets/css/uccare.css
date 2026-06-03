@@ -1,0 +1,2200 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+      font-family: 'Inter', sans-serif;
+      background: #fefefe;
+      color: #333;
+    }
+    .navbar-brand img {
+      height: 40px;
+    }
+    .hero {
+      position: relative;
+      background: url('../images/uc-medical/hero-1.png') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 10rem 2rem;
+      min-height: 90vh;
+      z-index: 1;
+    }
+       .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: -1;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .05em solid white;
+      width: 0;
+      animation: typing 4s steps(50, end) forwards, blink-caret .75s step-end 4s 5;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      0%, 100% { border-color: transparent }
+      50% { border-color: white; }
+    }
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+    .hero .btn-primary {
+     background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%);
+      border-color: #FF5B00;
+    }
+    .hero .btn-primary:hover {
+      background-color: black;
+      border-color: #FF5B00;
+
+    }
+    .hero .btn-outline-primary {
+      background-color: #fefefe;
+      border-color: #fefefe;
+      color: #FF5B00;
+    }
+    .hero .btn-outline-primary:hover {
+      background-color: #FF5B00;
+      color: white;
+      border-color: #fefefe;
+
+    }
+    .navbar-collapse {
+      justify-content: center;
+    }
+    .navbar-nav {
+      gap: 1.5rem;
+    }
+    .navbar-right {
+      position: absolute;
+      right: 1rem;
+    }
+
+    /* Navbar Styling */
+.navbar {
+    padding-top: 15px; /* Adjust padding as needed */
+    padding-bottom: 15px; /* Adjust padding as needed */
+}
+
+.navbar-brand img {
+    height: 40px; /* Adjust your logo height */
+}
+
+/* Navbar links */
+.navbar-nav .nav-item .nav-link {
+    font-size: 1rem; /* Adjust font size as per your design */
+    font-weight: 500; /* Medium weight for nav links */
+    color: #333; /* Default link color (dark grey) */
+    text-decoration: none; /* Remove default underline */
+    position: relative; /* Essential for positioning pseudo-elements */
+    display: inline-block; /* Essential for width calculation and margin/padding */
+    padding: 8px 0; /* Add some vertical padding for space above/below underlines */
+    margin: 0 15px; /* Horizontal spacing between nav items */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Change color on hover */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #FF5B00; /* Your brand red on hover */
+}
+
+/* Pseudo-elements for the animated lines */
+.navbar-nav .nav-item .nav-link::after,
+.navbar-nav .nav-item .nav-link::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Thickness of the underline */
+    background: linear-gradient(to right, #E50000 0%, #FF5B00 50%, #FFE600 100%); /* Gradient: your red to your green */
+    
+    transform: scaleX(0); /* Initially hidden */
+    transition: transform 0.4s ease-out; /* Speed of the animation */
+}
+
+/* Bottom line */
+.navbar-nav .nav-item .nav-link::after {
+    bottom: 0; /* Place at the bottom of the link's padding box */
+    left: 0;
+    transform-origin: right; /* Starts expanding from the right */
+}
+
+/* Top line */
+.navbar-nav .nav-item .nav-link::before {
+    top: 0; /* Place at the top of the link's padding box */
+    left: 0;
+    transform-origin: left; /* Starts expanding from the left */
+}
+
+/* Animation on hover */
+.navbar-nav .nav-item .nav-link:hover::after,
+.navbar-nav .nav-item .nav-link:hover::before {
+    transform: scaleX(1); /* Expands to full width */
+}
+
+/* Contact Us Button in Navbar */
+.navbar-right .btn-danger {
+    background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%);
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-right .btn-danger:hover {
+    background-color: #bf1a3e; /* Darker red on hover */
+    color: #fff;
+}
+
+/* Responsive adjustments for Navbar */
+@media (max-width: 991.98px) { /* For Bootstrap's 'lg' breakpoint and below */
+    .navbar-nav {
+        text-align: center; /* Center nav items when collapsed */
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .navbar-nav .nav-item .nav-link {
+        margin: 10px 0; /* Adjust vertical margin for stacked links */
+        padding: 5px 0; /* Adjust vertical padding */
+    }
+
+    /* For collapsed menu, the underline might look better if it just appears
+       or if you prefer to hide it, you can: */
+    .navbar-nav .nav-item .nav-link::after,
+    .navbar-nav .nav-item .nav-link::before {
+        display: none; /* Hide animated underlines in collapsed menu */
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: none; /* Remove focus outline if desired */
+    }
+}
+
+
+/* Mission statement  */
+
+.container {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+.goals-section {
+    padding: 80px 0;
+}
+
+/* Header */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #232744;
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    width: 180px;
+    height: 4px;
+    background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%);
+    display: block;
+    margin: 15px auto 0;
+    border-radius: 10px;
+}
+
+/* Grid */
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+@media (max-width: 992px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card */
+.card {
+    
+    border: 1px solid #FF5B00;
+    border-radius: 25px;
+    padding: 35px 25px;
+    text-align: center;
+    /* background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%); */
+    transition: all 0.35s ease;
+    cursor: pointer;
+    /* color: grey; */
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.12);
+    background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%); 
+    /* background: #e8ebf4; */
+    color: #fff;
+}
+
+.card:hover h3,
+.card:hover p {
+    color: inherit;
+}
+
+.card:hover h3{
+    font-weight: 700;
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #da7b7b 0%, #b95f2f 50%, #e4dead 100%); 
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: black;
+    font-size: 20px;
+}
+
+.card p,
+.card li {
+    line-height: 1.7;
+    color: #444;
+}
+
+.card ul {
+    list-style: none;
+}
+/* About section */
+
+.about-us-section {
+    background-color: #f5f3ef; /* Light beige background as in your original design */
+    padding: 80px 0;
+    position: relative; /* Keep this */
+    overflow: hidden; /* Keep this */
+}
+
+/* Ensure the left content column doesn't have a background pattern */
+.about-content {
+    padding-right: 40px; /* Space between text and heading */
+    /* Make sure no background-image, background-size, etc. here */
+}
+
+/* Now, target the right column for the dotted pattern */
+.about-pattern-column {
+    position: relative; /* Allows absolute positioning of the pattern within it */
+    overflow: hidden; /* Ensures pattern doesn't spill out */
+    background-color: transparent; /* Ensure no solid background here if pattern needs to show */
+    display: flex; /* Keep for centering heading */
+    align-items: center; /* Keep for centering heading */
+    justify-content: center; /* Keep for centering heading */
+    text-align: center; /* Keep for centering heading */
+}
+
+.about-pattern-column::before { /* Use a pseudo-element for the background pattern */
+    content: "";
+    position: absolute;
+    /* Adjust these values to position the pattern */
+    bottom: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px; 
+    background-image: url('assets/images/about__.png'); 
+    background-repeat: no-repeat;
+    background-size: contain; 
+    opacity: 0.3; 
+    z-index: 0; 
+    pointer-events: none; 
+
+}
+
+@media (max-width: 768px) {
+    .about-gallery {
+        height: auto;
+        display: grid;
+        gap: 15px;
+    }
+
+    .about-gallery img {
+        position: static;
+        width: 100%;
+        height: 250px;
+    }
+}
+
+
+.about-heading {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #e11d48;
+    line-height: 1.2;
+    margin: 0;
+    position: relative; /* Important: Make the heading stack on top of the pseudo-element */
+    z-index: 1; /* Ensure heading is above the pattern */
+}
+
+.about-gallery {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 450px;
+}
+
+.about-gallery img {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    transition: all .4s ease;
+}
+
+/* Main image */
+.img-one {
+    width: 280px;
+    height: 350px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Top right image */
+.img-two {
+    width: 220px;
+    height: 180px;
+    top: 30px;
+    right: 0;
+    z-index: 2;
+}
+
+/* Bottom right image */
+.img-three {
+    width: 240px;
+    height: 200px;
+    bottom: 0;
+    right: 20px;
+    z-index: 3;
+}
+
+.about-gallery img:hover {
+    transform: translateY(-10px);
+}
+
+
+.learn-more-link {
+    color: #e11d48; /* Red color from your hero section buttons */
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+}
+
+.learn-more-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: #e11d48;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease-out;
+}
+
+.learn-more-link:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+.about-heading {
+    font-size: 3.2rem; /* Adjust as needed for responsiveness */
+    font-weight: 700;
+    color: #e11d48; /* Green color from the image, adjust if needed */
+    line-height: 1.2;
+    margin: 0; /* Remove default margin */
+}
+
+.about-title{
+    background: linear-gradient(
+        to left,
+        #E50000 20%,
+        #FF5B00 50%,
+        #FFE600 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.gradient-text {
+    background: linear-gradient(
+        to bottom,
+        #E50000 0%,
+        #FF5B00 50%,
+        #FFE600 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.our-services-title {
+      background: linear-gradient(
+        to left,
+        #E50000 20%,
+        #FF5B00 50%,
+        #FFE600 100%
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-clip: text;
+    color: transparent;
+    font-size: 40px;
+    font-weight: 600;
+    
+}
+
+.about-text{
+    text-align: justify;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .about-content {
+        padding-right: 0;
+        margin-bottom: 40px; /* Space between content and heading on smaller screens */
+        text-align: center;
+        background-image: none; /* Remove background image on smaller screens if it doesn't fit well */
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .about-heading {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .about-us-section {
+        padding: 60px 0;
+    }
+
+    .about-heading {
+        font-size: 2rem;
+    }
+
+     .about-text {
+        font-size: 1rem;
+        text-align: justify;
+    }
+}
+
+
+/* Our Services Section */
+
+
+.our-services-section {
+    background-color: #fff; /* White background for the section */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.our-services-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e11d48; 
+    margin-bottom: 3rem;
+    position: relative; /* Essential for positioning the pseudo-elements */
+    display: inline-block; /* Essential for the width calculation of pseudo-elements */
+    /* Center the inline-block element if it's the only content in its parent */
+    margin-left: auto;
+    margin-right: auto;
+    /* Prevent default text decoration if any */
+    text-decoration: none;
+}
+
+.our-services-title::after,
+.our-services-title::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px; /* Thickness of the underline */
+    background: linear-gradient(to right, #e11d48, #4CAF50); /* Gradient: your red to your green */
+    /* Adjust these colors as needed. The example had #ff0000 and #00ffff */
+    
+    transform: scaleX(0);
+    transition: transform 0.4s ease-out; /* Speed of the animation */
+}
+
+/* Bottom line */
+.our-services-title::after {
+    bottom: -5px; /* Distance from the text */
+    left: 0;
+    transform-origin: right; /* Starts expanding from the right */
+}
+
+/* Top line */
+.our-services-title::before {
+    top: -5px; /* Distance from the text */
+    left: 0;
+    transform-origin: left; 
+}
+
+
+.our-services-title:hover::after,
+.our-services-title:hover::before {
+    transform: scaleX(1); 
+}
+
+/* If you want the animation to be present *always* (not just on hover), you'll need to use a different approach,
+   perhaps triggering it with JavaScript or an initial animation keyframe.
+   Given the "hover" context of your example, I'm sticking to a hover effect. */
+
+
+/* ... (rest of your existing .service-card, .service-icon, etc. styles) ... */
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .our-services-title {
+        font-size: 2rem;
+        /* Adjust positioning for smaller screens if needed */
+        margin-bottom: 2rem;
+    }
+}
+/* .our-services-section {
+    background-color: #fff; 
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.our-services-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e11d48; 
+    margin-bottom: 3rem;
+} */
+
+.service-card {
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    padding: 2.5rem; /* Internal padding */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out; /* Smooth transition for 3D effect */
+    perspective: 1000px; /* Establishes a 3D context for children */
+    transform-style: preserve-3d; /* Children elements will participate in 3D space */
+    position: relative; /* IMPORTANT: Needed for the absolute positioning of ::before */
+    z-index: 1; /* Ensure cards are above any background patterns */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+    align-items: flex-start; /* Align content to the left */
+    text-align: left; /* Text alignment */
+    overflow: hidden; /* IMPORTANT: Hides the ::before pseudo-element until it moves into view */
+}
+
+/* Add the shimmer effect pseudo-element */
+.service-card::before {
+    content: '';
+    position: absolute;
+    width: 100%; /* Or set a fixed width if you want a narrower shimmer band */
+    height: 100%; /* Or set a fixed height */
+    /* Adjust this gradient for the desired shimmer appearance */
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent); /* Adjust alpha for intensity */
+    top: -100%; /* Start off-screen */
+    left: -100%; /* Start off-screen */
+    transition: all 0.5s ease; /* Speed of the shimmer movement */
+    z-index: 2; /* Make sure it's above the card content but below the main hover effect */
+    pointer-events: none; /* Allows clicks to pass through */
+}
+
+.service-card:hover::before {
+    top: 100%; /* End position */
+    left: 100%; /* End position */
+}
+
+
+/* Card background colors */
+.service-card-green {
+    background-color: #F0F0F0; /* Light green from the image */
+}
+
+.service-card-gray {
+    background-color: #F0F0F0; /* Light gray from the image */
+}
+
+/* 3D Flip Effect on Hover */
+.service-card:hover {
+    transform: rotateY(15deg) rotateX(5deg) scale(1.02); /* Subtle 3D rotation and slight scale */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+    /* The shimmer effect is handled by ::before, so no change here */
+}
+
+.service-icon img {
+    width: 60px; /* Icon size */
+    height: 60px; /* Icon size */
+    object-fit: contain;
+    /* Apply filter to change color if icons are not naturally red/pink */
+    filter: invert(18%) sepia(93%) saturate(5428%) hue-rotate(338deg) brightness(97%) contrast(98%); /* Example: converts to a reddish hue */
+    /* You might need to adjust this filter or provide actual red icons */
+    margin-bottom: 1.5rem; /* Space below icon */
+}
+
+.service-title {
+    font-size: 1.6rem; /* Adjust title size */
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.service-description {
+    font-size: 0.95rem; /* Adjust description size */
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem; /* Space before learn more link */
+}
+
+.learn-more-link-dark {
+    color: #e11d48; /* Your brand red color */
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    display: inline-block; /* Essential for padding/margin */
+}
+
+.learn-more-link-dark::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: #e11d48;
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s ease-out;
+}
+
+.learn-more-link-dark:hover::after {
+    transform: scaleX(1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .service-card {
+        padding: 2rem; /* Adjust padding for smaller screens */
+    }
+    .service-title {
+        font-size: 1.4rem;
+    }
+    .service-description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .our-services-title {
+        font-size: 2rem;
+    }
+    .service-card {
+        padding: 1.5rem;
+    }
+    .service-icon img {
+        width: 50px;
+        height: 50px;
+    }
+    .service-title {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* Why choose us */
+/* Why Choose Us Section */
+.why-choose-us-section {
+    background-color: #D1D8D2; /* Greenish-gray background from the image */
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative; /* Needed for any absolute positioning within */
+    overflow: hidden; /* Prevent overflow of decorative elements */
+}
+
+.strategic-partner-badge {
+    display: inline-block;
+    background-color: #B2B9B3; /* Darker grey for the badge */
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.why-choose-us-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #e11d48; /* Green color */
+    margin-bottom: 4rem; /* Space before the advantage box */
+}
+
+.ekunua-advantage-container {
+    position: relative;
+    padding-bottom: 100px; /* Space for the connectors and boxes below */
+}
+
+.ekunua-advantage-box {
+    background-color: #CED6CE; /* Lighter greenish-gray for the box */
+    color: #333; /* Dark text */
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 25px; /* Pill shape */
+    display: inline-block; /* Shrink to content size */
+    margin: 0 auto; /* Center the box */
+    position: relative;
+    z-index: 10; /* Ensure it's above connectors */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Connector Lines Styling */
+.ekunua-advantage-connectors {
+    position: absolute;
+    top: 50px; /* Aligned with bottom of the advantage box */
+    left: 0;
+    right: 0;
+    height: 100px; 
+    /* background-color: rgba(0,0,0,0.1); /* For debugging position */
+}
+
+.ekunua-advantage-connectors::before,
+.ekunua-advantage-connectors::after {
+    content: '';
+    position: absolute;
+    background-color: #5C7063; 
+    z-index: 5;
+}
+
+/* Vertical line down from advantage box */
+.ekunua-advantage-connectors::before {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 60px; 
+}
+
+/* Horizontal line connecting to vertical lines above feature boxes */
+.ekunua-advantage-connectors::after {
+    top: 60px; 
+    left: 0;
+    right: 0;
+    height: 2px; 
+}
+
+/* Individual vertical lines above feature boxes */
+.feature-boxes-row {
+    position: relative;
+    z-index: 10; 
+    margin-top: 100px; 
+}
+
+.feature-boxes-row .col-lg-4:nth-child(1)::before,
+.feature-boxes-row .col-lg-4:nth-child(2)::before,
+.feature-boxes-row .col-lg-4:nth-child(3)::before {
+    content: '';
+    position: absolute;
+    background-color: #5C7063; 
+    width: 2px; 
+    height: 40px; 
+    top: -40px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* Feature Box Styling */
+.feature-box {
+    background-color: #fff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    text-align: left;
+    position: relative; 
+    z-index: 10; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.feature-box-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.feature-box-description {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.view-more-link {
+    color: #e11d48; 
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    padding-top: 10px; 
+}
+
+.view-more-link:hover {
+    color: #e11d48;
+}
+
+.view-more-link span {
+    font-size: 1.2rem; 
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .ekunua-advantage-box {
+        margin-bottom: 3rem;
+    }
+
+    .ekunua-advantage-connectors,
+    .ekunua-advantage-connectors::before,
+    .ekunua-advantage-connectors::after,
+    .feature-boxes-row .col-lg-4::before {
+        display: none; 
+    }
+
+    .why-choose-us-title {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+    }
+
+    .feature-boxes-row {
+        margin-top: 2rem; 
+    }
+}
+
+@media (max-width: 767.98px) {
+    .why-choose-us-title {
+        font-size: 1.8rem;
+    }
+    .strategic-partner-badge {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+    .ekunua-advantage-box {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    .feature-box-title {
+        font-size: 1.2rem;
+    }
+    .feature-box-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Main Footer */
+.main-footer {
+    background-color: #1a1a1a; 
+    color: #fff;
+    padding: 60px 0; /* Vertical padding */
+}
+
+.main-footer .footer-logo {
+    height: 60px; /* Adjust logo size */
+    filter: brightness(0) invert(1); /* Makes the React logo white for dark background */
+    /* If you have a colored Ekenua logo, remove this filter */
+}
+
+.footer-company-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    font-size: 1rem;
+    color: #bbb;
+    margin-bottom: 1.5rem;
+}
+
+.footer-description {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.6;
+    max-width: 550px; /* Limit width for readability */
+}
+
+.footer-schedule-btn {
+    background: linear-gradient(to bottom, #E50000 0%, #FF5B00 50%, #FFE600 100%); 
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.footer-schedule-btn:hover {
+    background-color: #ffffff; /* Darker red on hover */
+    color: #000000; /* Ensure text remains white */
+}
+
+
+/* Sub Footer (Contact Info & Social) */
+.sub-footer {
+    background-color: #e6e6e6; /* Light grey background */
+    color: #555;
+    padding: 20px 0; /* Vertical padding */
+    border-top: 1px solid #ddd; /* Subtle top border */
+}
+
+.footer-contact-info {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.social-icons .social-icon-link {
+    display: inline-block;
+    width: 28px; /* Size of social icons */
+    height: 28px;
+    line-height: 1; /* For vertical alignment */
+    transition: transform 0.2s ease;
+}
+
+.social-icons .social-icon-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Optional: Filter to recolor social icons if they are not already dark */
+    /* filter: brightness(0) saturate(100%); /* Makes them black if they are white/light */
+}
+
+.social-icons .social-icon-link:hover {
+    transform: translateY(-3px); /* Subtle lift on hover */
+}
+
+
+/* Copyright Bar */
+.copyright-bar {
+    background-color: #e6e6e6; /* Same light grey as sub-footer */
+    color: #555;
+    font-size: 0.85rem;
+    padding: 10px 0;
+    border-top: 1px solid #ddd; /* Separator line */
+}
+
+.copyright-bar .copyright-link {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.copyright-bar .copyright-link:hover {
+    color: #e11d48; /* Red on hover */
+}
+
+
+/* Responsive Adjustments for Footer */
+@media (max-width: 991.98px) {
+    .main-footer {
+        padding: 40px 0;
+        text-align: center;
+    }
+    .footer-left-content {
+        margin-bottom: 30px;
+    }
+    .footer-logo {
+        height: 50px;
+    }
+    .footer-company-name {
+        font-size: 1.8rem;
+    }
+    .footer-tagline {
+        font-size: 0.9rem;
+    }
+    .footer-description {
+        font-size: 0.9rem;
+        max-width: 100%; /* Remove max-width on smaller screens */
+    }
+    .footer-right-content {
+        justify-content: center !important; /* Center button on smaller screens */
+    }
+
+    .sub-footer .col-md-4 {
+        text-align: center;
+    }
+    .social-icons {
+        justify-content: center; /* Center social icons */
+    }
+    .sub-footer .col-md-4:not(:last-child) {
+        margin-bottom: 15px; /* Add space between stacked columns */
+    }
+
+    .copyright-bar .container {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center;
+    }
+    .copyright-bar p {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .main-footer {
+        padding: 30px 0;
+    }
+    .footer-logo {
+        height: 45px;
+    }
+    .footer-company-name {
+        font-size: 1.6rem;
+    }
+    .footer-tagline {
+        font-size: 0.85rem;
+    }
+    .footer-description {
+        font-size: 0.8rem;
+    }
+    .footer-schedule-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+    }
+    .sub-footer {
+        padding: 15px 0;
+    }
+    .footer-contact-info {
+        font-size: 0.8rem;
+    }
+    .social-icons .social-icon-link {
+        width: 24px;
+        height: 24px;
+    }
+    .copyright-bar {
+        font-size: 0.75rem;
+    }
+}
+
+/* Success Stories Section */
+.success-stories-section {
+    background-color: #f7f7f7; /* Light background from the image */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.success-stories-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #4CAF50; /* Green color for the title */
+    margin-bottom: 3rem;
+}
+
+.success-story-card {
+    background-color: #fff; /* White background for the cards */
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+    overflow: hidden; /* Ensures image and content stay within rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.success-story-card:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.success-story-card .card-image-wrapper {
+    height: 180px; /* Fixed height for the image background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Padding around the image inside the wrapper */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* Background colors for image wrappers based on the screenshot */
+.success-story-card .card-image-blue {
+    background-color: #0d1e3d; /* Dark blue background */
+}
+
+.success-story-card .card-image-black {
+    background-color: #000000; /* Black background */
+}
+
+.success-story-card .card-image-red {
+    background-color: #bb2f2a; /* Dark red background (Underground logo color) */
+}
+
+
+.success-story-card .card-image-wrapper img {
+    max-height: 100px; /* Max height for client logos */
+    width: auto;
+    object-fit: contain; /* Ensure image scales correctly */
+}
+
+.success-story-card .card-body {
+    padding: 1.8rem; /* Padding for the text content */
+}
+
+.story-category {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #666; /* Grey color for category */
+    margin-bottom: 0.5rem;
+    display: block; /* Ensures it takes full width */
+}
+
+.story-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.story-description,
+.story-approach {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem; /* Space between description and approach */
+}
+
+.story-description strong,
+.story-approach strong {
+    color: #333; /* Darker color for bold text like 'Client:' 'Challenge:' */
+}
+
+.learn-more-link {
+    color: #e11d48; /* Your brand red */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+    display: inline-block; /* Allows padding/margin if needed */
+    margin-top: 1rem; /* Space above the link */
+}
+
+.learn-more-link:hover {
+    color: #4CAF50; /* Your brand green on hover */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .success-stories-title {
+        font-size: 2rem;
+    }
+    .success-story-card .card-body {
+        padding: 1.5rem;
+    }
+    .story-title {
+        font-size: 1.2rem;
+    }
+    .story-description,
+    .story-approach {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .success-stories-card {
+        margin-bottom: 1.5rem; /* Reduce margin on very small screens */
+    }
+}
+
+/* Recognized by the Best Section */
+.recognized-by-best-section {
+    background-color: #f7f7f7; /* Light background from the image */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.recognized-by-best-section .partners-badge {
+    display: inline-block;
+    background-color: transparent; /* No specific background shown in image */
+    color: #666; /* Grey text color */
+    padding: 5px 0; /* Minimal padding */
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.recognized-by-best-section .recognized-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #4CAF50; /* Green color for the title */
+    margin-bottom: 1rem;
+}
+
+.recognized-by-best-section .recognized-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 450px; /* Limit width for readability */
+}
+
+.logo-carousel {
+    display: flex;
+    justify-content: space-around; /* Distributes logos evenly */
+    align-items: center;
+    flex-wrap: wrap; /* Allows logos to wrap on smaller screens */
+    gap: 30px; /* Space between logos */
+}
+
+.carousel-item-logo {
+    flex-shrink: 0; /* Prevent logos from shrinking too much */
+    width: 120px; /* Default width for logos */
+    height: 60px; /* Default height for logos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Remove the filter property entirely, or set to 'none' */
+    filter: none; /* This ensures they display in their actual colors */
+    transition: filter 0.3s ease; /* Keep transition if you add other hover effects later */
+}
+
+.carousel-item-logo img:hover {
+    /* You can add other hover effects here if desired, e.g., a slight scale or shadow */
+    /* For example: transform: scale(1.05); */
+}
+
+.carousel-dots {
+    margin-top: 2.5rem; /* Space above the dots */
+}
+
+.carousel-dots .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc; /* Default dot color */
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-dots .dot.active,
+.carousel-dots .dot:hover {
+    background-color: #4CAF50; /* Active/hover dot color (green) */
+    transform: scale(1.2); /* Slightly larger on hover/active */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .recognized-by-best-section .text-section {
+        text-align: center;
+    }
+    .recognized-by-best-section .recognized-description {
+        max-width: 100%; /* Remove max-width on smaller screens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .carousel-section {
+        margin-top: 3rem; /* Add space between text and carousel on smaller screens */
+    }
+    .logo-carousel {
+        justify-content: center; /* Center logos when stacked */
+        gap: 20px;
+    }
+    .carousel-item-logo {
+        width: 100px; /* Slightly smaller logos on tablet */
+        height: 50px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .recognized-by-best-section .recognized-title {
+        font-size: 2.2rem;
+    }
+    .recognized-by-best-section .recognized-description {
+        font-size: 0.9rem;
+    }
+    .carousel-item-logo {
+        width: 90px; /* Even smaller logos on mobile */
+        height: 45px;
+    }
+}
+
+/* Industries We Serve Section */
+.industries-we-serve-section {
+    background-color: #fff; /* White background from the image */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Custom wrapper for content width and centering, replacing Bootstrap container */
+.custom-content-wrapper {
+    max-width: 1140px; /* Or a width that matches your overall site content width */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px; /* Bootstrap default container padding */
+    padding-right: 15px; /* Bootstrap default container padding */
+}
+
+.industries-badge {
+    display: inline-block;
+    color: #666; /* Grey text color */
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.industries-main-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #4CAF50; /* Green color for the title */
+    margin-bottom: 3rem;
+    max-width: 600px; /* Limit width of title as seen in image */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; /* Ensure title is centered */
+}
+
+/* New Grid Layout for Industry Cards */
+.industry-cards-grid-layout {
+    display: grid;
+    /* Two columns: first for Oil & Gas/Fintech, second for Real Estate/Infrastructure */
+    grid-template-columns: repeat(2, minmax(280px, 1fr)); /* Adjusted for two columns, min width for card */
+    gap: 20px; /* Space between cards */
+    justify-items: center; /* Center items in their grid cells */
+    align-items: center; /* Vertically align items in their grid cells */
+    width: fit-content; /* Make grid container only as wide as its content */
+    margin: 0 auto; /* Center the grid itself */
+    position: relative; /* For the shuffle transition */
+    transition: all 0.5s ease-in-out; /* Smooth transition for shuffling */
+    min-height: 200px; /* Prevents layout jump during shuffle */
+}
+
+/* Specific positioning for cards to match the image */
+.industry-cards-grid-layout > div:nth-child(even) {
+    /* Styles for Real Estate and Infrastructure (2nd and 4th cards) */
+    transform: translateX(100px); /* Adjust this value to shift them right as in the image */
+}
+
+
+.industry-card {
+    /* background-color: #f0f0f0; Light grey background for the cards */
+    border-radius: 50px; /* Pill shape */
+    padding: 10px 25px 10px 10px; /* Padding, more on the right for text */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and name */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    width: 280px; /* Fixed width for cards */
+    flex-shrink: 0; /* Prevent shrinking when space is tight */
+}
+
+.industry-card:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.industry-icon {
+    width: 70px; /* Size of the circular image */
+    height: 70px;
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure image covers the circle */
+}
+
+.industry-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.sector-agnostic-link {
+    color: #e11d48; /* Your brand red */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative; /* For the underline effect */
+    padding-bottom: 3px; /* Space for the underline */
+    transition: color 0.3s ease;
+}
+
+/* Underline effect for the link */
+.sector-agnostic-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e11d48; /* Red underline */
+    transition: transform 0.3s ease-out;
+    transform-origin: left;
+    transform: scaleX(1); /* Always visible as per image */
+}
+
+.sector-agnostic-link:hover {
+    color: #4CAF50; /* Green on hover */
+}
+
+.sector-agnostic-link:hover::after {
+    background-color: #4CAF50; /* Green underline on hover */
+    transform: scaleX(1.05); /* Slightly expand on hover */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .industries-main-title {
+        font-size: 2.2rem;
+        max-width: 500px;
+    }
+    .industry-cards-grid-layout {
+        grid-template-columns: repeat(2, minmax(250px, 1fr)); /* Adjust card min-width */
+        gap: 15px;
+    }
+    .industry-cards-grid-layout > div:nth-child(even) {
+        transform: translateX(50px); /* Reduce horizontal shift on smaller screens */
+    }
+    .industry-card {
+        padding: 8px 20px 8px 8px;
+        width: 250px; /* Adjust fixed width */
+    }
+    .industry-icon {
+        width: 35px;
+        height: 35px;
+    }
+    .industry-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .industries-main-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    .industry-cards-grid-layout {
+        grid-template-columns: 1fr; /* Single column on small screens */
+        justify-items: center; /* Center cards */
+    }
+    .industry-cards-grid-layout > div:nth-child(even) {
+        transform: translateX(0); /* Remove horizontal shift on single column layout */
+    }
+    .industry-card {
+        width: 90%; /* Make cards nearly full width */
+        max-width: 320px; /* Max width for cards on small screens */
+        justify-content: center; /* Center content in card */
+    }
+}
+
+@media (max-width: 575.98px) {
+    .industries-badge {
+        font-size: 0.75rem;
+    }
+    .industry-main-title {
+        font-size: 1.6rem;
+    }
+}
+
+
+/* General styles for the section */
+    .contact-us-section {
+        background-color: #f7f7f7; /* Light background, consistent with other sections */
+        padding: 60px 15px; /* Reduced padding top/bottom and some side padding */
+        font-family: 'Inter', sans-serif; /* Consistent font */
+        color: #333;
+    }
+
+    /* Container for the form content */
+    .contact-container {
+        max-width: 550px; /* Reduced max width for the form */
+        margin: 0 auto; /* Center the container */
+        background-color: #ffffff; /* White background for the form card */
+        padding: 30px; /* Reduced padding */
+        border-radius: 15px; /* Rounded corners */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Soft shadow */
+        animation: fadeIn 0.8s ease-out; /* Simple fade-in animation */
+    }
+
+    /* Title styling */
+    .contact-title {
+        font-size: 2rem; /* Reduced font size */
+        font-weight: 700;
+        color: #4CAF50; /* Green color for the title */
+        text-align: center;
+        margin-bottom: 10px; /* Reduced margin */
+    }
+
+    /* Subtitle styling */
+    .contact-subtitle {
+        font-size: 0.9rem; /* Reduced font size */
+        color: #666;
+        text-align: center;
+        margin-bottom: 30px; /* Reduced margin */
+        line-height: 1.6;
+    }
+
+    /* Form group (label + input) styling */
+    .contact-form .form-group {
+        margin-bottom: 20px; /* Reduced space between form fields */
+    }
+
+    /* Label styling */
+    .contact-form label {
+        display: block; /* Make labels take full width */
+        font-size: 0.9rem; /* Reduced font size */
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px; /* Reduced space between label and input */
+    }
+/* Input and textarea styling */
+    .contact-form input[type="text"],
+    .contact-form input[type="email"],
+    .contact-form textarea {
+        width: 100%;
+        padding: 10px 12px; /* Reduced padding */
+        border: 1px solid #ddd; /* Light grey border */
+        border-radius: 8px; /* Rounded input fields */
+        font-size: 0.95rem; /* Slightly reduced font size */
+        color: #333;
+        background-color: #fcfcfc; /* Slightly off-white background for inputs */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    }
+
+    /* Placeholder text color */
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+        color: #aaa;
+    }
+
+    /* Focus state for inputs and textarea */
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        outline: none; /* Remove default outline */
+        border-color: #4CAF50; /* Green border on focus */
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Soft green glow */
+    }
+
+    /* Textarea specific styling */
+    .contact-form textarea {
+        resize: vertical; /* Allow vertical resizing only */
+        min-height: 100px; /* Reduced minimum height for textarea */
+    }
+
+    /* Submit button styling */
+    .solution-image{
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+    }       
+    .submit-button {
+        display: block; 
+        width: 100%;
+        padding: 12px 20px; 
+        background: linear-gradient(
+        to bottom,
+        #E50000 0%,
+        #FF5B00 50%,
+        #FFE600 100%
+    );
+        color: #fff;
+        border: none;
+        border-radius: 8px; /* Rounded button */
+        font-size: 1rem; /* Reduced font size */
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Smooth transitions */
+        letter-spacing: 0.5px;
+    }
+
+    .submit-button:hover {
+        background-color: #bf1a3e; /* Darker red on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+        box-shadow: 0 8px 20px rgba(225, 29, 72, 0.2); /* More prominent shadow */
+    }
+
+    .submit-button:active {
+        transform: translateY(0); /* Press down effect */
+        box-shadow: none;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .contact-us-section {
+            padding: 40px 10px; /* Further reduced padding */
+        }
+        .contact-container {
+            padding: 25px; /* Further reduced padding */
+            border-radius: 8px;
+        }
+        .contact-title {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+        .contact-subtitle {
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+        }
+        .contact-form label {
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 8px 10px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 18px;
+            font-size: 0.95rem;
+            border-radius: 5px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-container {
+            padding: 15px;
+        }
+        .contact-title {
+            font-size: 1.6rem;
+        }
+        .contact-subtitle {
+            font-size: 0.8rem;
+        }
+
+        .solution-image{
+        width: 70%;
+        height: auto;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    } 
+    }
+
+
+    /* Our Solutions Section */
+.our-solutions-section {
+    background-color: #f7f7f7; /* Light background, similar to other sections */
+    padding: 80px 0;
+    position: relative; /* For the background pattern */
+    overflow: hidden; /* Ensure background pattern doesn't spill */
+}
+
+/* Background dot pattern from 'show .png' */
+.our-solutions-section::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; /* Position it off-screen initially */
+    right: -100px;
+    width: 300px; /* Size of the pattern area */
+    height: 300px;
+    background-image: radial-gradient(circle, #e6e6e6 1px, transparent 1px); /* Small light grey dots */
+    background-size: 10px 10px; /* Spacing of the dots */
+    opacity: 0.6; /* Slight transparency */
+    z-index: 0; /* Keep it in the background */
+    transform: rotate(45deg); /* Rotate to match the image */
+    pointer-events: none; /* Make sure it doesn't interfere with clicks */
+}
+
+
+.solutions-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #4CAF50; /* Green color for the title */
+    margin-bottom: 20px;
+}
+
+.solutions-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px; /* Limit width for readability */
+    margin-bottom: 50px;
+}
+
+/* Card Container for Grid Layout */
+.solutions-cards-grid {
+    /* Bootstrap's row and col classes will handle the grid */
+}
+
+/* Individual Solution Card Styling */
+.solution-card {
+    background-color: transparent; /* Inner div handles background */
+    width: 100%; /* Take full column width */
+    height: 500px; /* Fixed height for cards */
+    perspective: 1000px; /* Establish 3D perspective for the flip */
+    border-radius: 15px; /* Matches overall rounded aesthetic */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* Subtle initial shadow */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.solution-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+
+.solution-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s; /* Smooth flip animation duration */
+    transform-style: preserve-3d; /* Keep children in 3D space */
+    border-radius: 15px; /* Apply to inner as well */
+}
+
+.solution-card:hover .solution-card-inner {
+    transform: rotateY(180deg); /* Flip on hover */
+}
+
+.solution-card-front,
+.solution-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back when facing away */
+    border-radius: 15px; /* Match parent */
+    padding: 30px; /* Padding inside the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+.solution-card-front {
+    background-color: #fff; /* White background for front */
+    color: #333;
+    z-index: 2; /* Ensure front is on top initially */
+    transform: rotateY(0deg); /* Initial position */
+}
+
+.solution-card-back {
+    background: linear-gradient(to bottom, #E50000 10%, #FF5B00 50%, #FFE600 100%); 
+    color: #fff;
+    transform: rotateY(180deg); /* Start rotated for the back */
+    display: flex; /* Override flex properties from above for specific content alignment */
+    flex-direction: column;
+    justify-content: flex-start; /* Align text to top */
+    align-items: flex-start; /* Align text to left */
+    text-align: left;
+}
+
+/* Front content styling */
+.solution-icon-wrapper {
+    background-color: #f0f0f0; /* Light grey circle behind icon */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.solution-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.solution-card-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.solution-card-summary {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Back content styling */
+.solution-card-heading-back {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff; /* White text on green background */
+}
+
+.solution-card-detailed {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    flex-grow: 1; /* Allow content to grow and push learn more down */
+}
+
+.solution-learn-more-back {
+    color: #fff; /* White text for link */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    gap: 5px; /* Space between text and icon */
+    transition: transform 0.3s ease;
+}
+
+.solution-learn-more-back:hover {
+    transform: translateX(5px); /* Slide effect on hover */
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .solutions-title {
+        font-size: 2.2rem;
+    }
+    .solutions-description {
+        font-size: 0.95rem;
+        margin-bottom: 40px;
+    }
+    .solution-card {
+        height: 320px; /* Slightly reduced height on tablets */
+    }
+    .solution-card-front,
+    .solution-card-back {
+        padding: 25px;
+    }
+    .solution-icon-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+    .solution-icon {
+        width: 35px;
+        height: 35px;
+    }
+    .solution-card-heading,
+    .solution-card-heading-back {
+        font-size: 1.3rem;
+    }
+    .solution-card-summary,
+    .solution-card-detailed {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .our-solutions-section {
+        padding: 60px 0;
+    }
+    .solutions-title {
+        font-size: 1.8rem;
+    }
+    .solutions-description {
+        margin-bottom: 30px;
+    }
+    .solutions-cards-grid .col-md-6 {
+        flex: 0 0 80%; /* Make cards wider on small mobile screens */
+        max-width: 80%;
+    }
+    .solution-card {
+        height: 300px; /* Further reduced height on mobile */
+    }
+    .solution-card-front,
+    .solution-card-back {
+        padding: 20px;
+    }
+    .solution-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+    .solution-icon {
+        width: 30px;
+        height: 30px;
+    }
+    .solution-card-heading,
+    .solution-card-heading-back {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .solutions-cards-grid .col-md-6 { /* Targets .col-md-6 when it's also acting as col-12 */
+        flex: 0 0 95%; /* Make cards nearly full width on very small screens */
+        max-width: 95%;
+    }
+}
+
+
+ /* Strategies Section */
+    .strategies-section {
+        background-color: #fefefe; /* White or very light background */
+        padding: 80px 0;
+        font-family: 'Inter', sans-serif;
+        color: #333;
+    }
+
+    .strategies-title {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #4CAF50; /* Green color for the title */
+        margin-bottom: 20px;
+    }
+
+    .strategies-description {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+        max-width: 800px; /* Limit width for readability */
+        margin-bottom: 50px;
+    }
+
+    .strategies-list {
+        list-style: none; /* Remove default bullet points */
+        padding: 0;
+        margin: 0;
+    }
+
+    .strategies-list li {
+        background-color: #ffffff; /* White background for each list item */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        padding: 25px 30px;
+        margin-bottom: 10px; /* Space between list items */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative; /* For potential future enhancements like icons */
+        overflow: hidden; /* To contain any pseudo-elements */
+    }
+
+    .strategies-list li:last-child {
+        margin-bottom: 0; /* No margin after the last item */
+    }
+
+    .strategies-list li:hover {
+        transform: translateY(-5px); /* Slight lift on hover */
+        box-shadow: 0 8px 20px rgba(254, 55, 68, 0.1); /* More pronounced shadow */
+    }
+
+    .strategy-item-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .strategy-item-description {
+        font-size: 0.95rem;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .strategies-title {
+            font-size: 2.2rem;
+        }
+        .strategies-description {
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .strategies-list li {
+            padding: 20px 25px;
+        }
+        .strategy-item-title {
+            font-size: 1.2rem;
+        }
+        .strategy-item-description {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .strategies-section {
+            padding: 60px 0;
+        }
+        .strategies-title {
+            font-size: 1.8rem;
+        }
+        .strategies-description {
+            margin-bottom: 30px;
+            padding: 0 15px; /* Add horizontal padding for description on small screens */
+        }
+        .strategies-list li {
+            padding: 18px 20px;
+            margin-bottom: 15px;
+        }
+        .strategy-item-title {
+            font-size: 1.1rem;
+        }
+        .strategy-item-description {
+            font-size: 0.85rem;
+        }
+    }
+
+
+
+    /* Projects section */
+
+    /* Hero Styling */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1e293b 100%);
+            padding: 100px 0 80px 0;
+            position: relative;
+        }
+
+        /* Filter Button Styling */
+        .filter-btn {
+            border: 2px solid #cbd5e1;
+            background: transparent;
+            color: #475569;
+            padding: 8px 20px;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #fff;
+        }
+
+        /* Project Card Styling */
+        .project-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 240px;
+            background-color: #e2e8f0;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .badge-active {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-completed {
+            background-color: #f1f5f9;
+            color: #475569;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Smooth Filtering Animation classes */
+        .project-item {
+            transition: all 0.4s ease;
+        }
+        
+        .project-item.hide {
+            display: none !important;
+        }
+
+        /* Base Filter Button Styling */
+.filter-btn {
+    border: 2px solid #cbd5e1;
+    background: transparent;
+    color: #475569;
+    padding: 8px 20px;
+    font-weight: 600;
+    border-radius: 30px; 
+    transition: all 0.2s ease;
+}
+
+/* Active & Hover State with Gradient Border Only */
+.filter-btn:hover, .filter-btn.active {
+    color: #E50000; /* Makes text match the primary gradient color */
+    border-image: linear-gradient(to left, #E50000 20%, #FF5B00 50%, #FFE600 100%) 1;
+    background: transparent;
+    border-radius: 30px;
+}
