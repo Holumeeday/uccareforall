@@ -1,0 +1,133 @@
+<div class="modal fade" id="volunteerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg" style="border-radius:18px;overflow:hidden;">
+            
+            <div class="modal-header volunteer-modal-header border-0 py-3 px-4">
+                <div class="d-flex align-items-center">
+                    <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style="width:40px;height:40px;">
+                        <i class="fa-solid fa-users-viewfinder fs-5"></i>
+                    </div>
+
+                    <div>
+                        <h4 class="modal-title fw-bold h5 mb-0" id="volunteerModalLabel">
+                            Volunteer Network Enrollment
+                        </h4>
+
+                        <small style="color:#cbd5e1;font-size:0.78rem;">
+                            Deploy your expertise inside the field
+                        </small>
+                    </div>
+                </div>
+
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-4 p-md-5 bg-white">
+
+                <form action="YOUR_EMAIL_HANDLER_URL_HERE" method="POST">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text"
+                                   name="volunteer_name"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input type="email"
+                                   name="volunteer_email"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Core Competency / Skill Profession</label>
+
+                            <select name="volunteer_skill"
+                                    class="form-select"
+                                    required>
+
+                                <option value="" disabled selected>
+                                    Select primary profile...
+                                </option>
+
+                                <option>
+                                    Medical Specialist / Nurse / Doctor
+                                </option>
+
+                                <option>
+                                    Educator / Instructional Lead
+                                </option>
+
+                                <option>
+                                    Media Creator / Photographer / Videographer
+                                </option>
+
+                                <option>
+                                    Logistics Specialist / General Support
+                                </option>
+
+                                <option>
+                                    Student / Enthusiastic Advocate
+                                </option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">General Availability Allocation</label>
+
+                            <select name="volunteer_availability"
+                                    class="form-select"
+                                    required>
+
+                                <option value="" disabled selected>
+                                    Select availability...
+                                </option>
+
+                                <option>Weekends Only</option>
+                                <option>Weekday Deployments</option>
+                                <option>Flexible / On-Call Notice</option>
+                                <option>Remote Digital Support Only</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">
+                                Statement of Motivation
+                            </label>
+
+                            <textarea
+                                name="volunteer_motivation"
+                                rows="4"
+                                class="form-control"
+                                required></textarea>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit"
+                                    class="btn btn-dark w-100 py-3 fw-bold rounded-pill">
+
+                                Submit Application & Join Database
+
+                            </button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>

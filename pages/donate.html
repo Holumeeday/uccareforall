@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate — Uccareforall Initiative</title>
+  <link rel="stylesheet" href="../assets/css/uccare.css">
+   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+  <style>
+
+  </style>
+</head>
+<body>
+
+    <!-- STICKY NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top position-relative">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pages/about-us.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="../">Strategic Partnership</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Strategies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
+          
+        </ul>
+      </div>
+      <div class="navbar-right d-none d-lg-block">
+        <a href="#" class="btn btn-danger"><i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;" ></i> Donate</a>
+      </div>
+    </div>
+  </nav>
+
+
+   <!-- ── Hero ── -->
+  <section class="donate-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="hero-eyebrow">Make a Difference Today</span>
+      <h1 class="hero-headline">
+        Every naira you give<br>changes a <em>real life.</em>
+      </h1>
+      <p class="hero-sub" >
+        Your contribution funds school kits for children, free health check-ups for families, and tech training for young Nigerians building a future.
+      </p>
+      <div class="impact-pills">
+        <span class="impact-pill" style=" color: var(--amber);"><i class="fa-solid fa-circle-check"></i> Verified Field Deployments</span>
+        <span class="impact-pill" style=" color: var(--amber);"><i class="fa-solid fa-circle-check"></i> 100% Goes to Community</span>
+        <span class="impact-pill" style=" color: var(--amber);"><i class="fa-solid fa-circle-check"></i> Transparent Impact Reporting</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Impact Strip ── -->
+  <div class="impact-strip">
+    <div class="container">
+      <div class="d-flex justify-content-center align-items-stretch flex-wrap gap-4">
+        <div class="impact-stat">
+          <div class="impact-num">12,000+</div>
+          <div class="impact-desc" style=" color: var(--amber);">Lives Reached</div>
+        </div>
+        <div class="impact-divider d-none d-md-block"></div>
+        <div class="impact-stat">
+          <div class="impact-num">30+</div>
+          <div class="impact-desc" style=" color: var(--amber);">Field Deployments</div>
+        </div>
+        <div class="impact-divider d-none d-md-block"></div>
+        <div class="impact-stat">
+          <div class="impact-num">3</div>
+          <div class="impact-desc" style=" color: var(--amber);">Active Programmes</div>
+        </div>
+        <div class="impact-divider d-none d-md-block"></div>
+        <div class="impact-stat">
+          <div class="impact-num">100%</div>
+          <div class="impact-desc" style=" color: var(--amber);">Community Directed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <section class="donate-body">
+    <div class="container">
+      <div class="row g-4 justify-content-center">
+
+        <!-- Donation Form -->
+        <div class="col-lg-7">
+          <div class="donation-card">
+            <div class="card-header-band">
+              <i class="fa-solid fa-heart"></i>
+              <span>Complete Your Donation</span>
+            </div>
+            <div class="card-body-inner">
+
+              <!-- Frequency Toggle -->
+              <div class="freq-toggle" role="group" aria-label="Donation frequency">
+                <button class="freq-btn active" id="btn-onetime" onclick="setFreq('onetime')">
+                  <i class="fa-regular fa-circle-dot"></i> One-time Gift
+                </button>
+                <button class="freq-btn" id="btn-monthly" onclick="setFreq('monthly')">
+                  <i class="fa-solid fa-rotate"></i> Monthly Giving
+                </button>
+              </div>
+
+              <!-- Monthly banner (hidden by default) -->
+              <div id="monthly-banner" style="display:none; background:rgba(200,146,42,0.08); border:1px solid rgba(200,146,42,0.25); border-radius:10px; padding:0.75rem 1rem; margin-bottom:1.5rem; font-size:0.82rem; color:var(--amber); display:none; align-items:center; gap:8px;">
+                <i class="fa-solid fa-rotate"></i>
+                <span>Monthly giving lets us plan ahead and extend our impact. Your recurring gift makes a reliable difference every single month.</span>
+              </div>
+
+              <!-- Amount Tiers -->
+              <span class="tier-label">Select or enter an amount</span>
+              <div class="tier-grid" id="tier-grid">
+                <button class="tier-btn" data-amount="5000" onclick="selectTier(this, 5000)">
+                  <span class="amount">₦5,000</span>
+                  <span class="impact-tag">Feeds a family for a week</span>
+                </button>
+                <button class="tier-btn" data-amount="20000" onclick="selectTier(this, 20000)">
+                  <span class="amount">₦20,000</span>
+                  <span class="impact-tag">Kits a child for school</span>
+                </button>
+                <button class="tier-btn" data-amount="50000" onclick="selectTier(this, 50000)">
+                  <span class="amount">₦50,000</span>
+                  <span class="impact-tag">Funds one health screening day</span>
+                </button>
+                <button class="tier-btn" data-amount="100000" onclick="selectTier(this, 100000)">
+                  <span class="amount">₦100,000</span>
+                  <span class="impact-tag">Sponsors a youth tech bootcamp slot</span>
+                </button>
+                <button class="tier-btn" data-amount="200000" onclick="selectTier(this, 200000)">
+                  <span class="amount">₦200,000</span>
+                  <span class="impact-tag">Deploys a full community outreach day</span>
+                </button>
+                <button class="tier-btn tier-custom" id="tier-custom-btn" onclick="selectCustom()">
+                  <span class="amount" style="font-size:1rem;">Custom</span>
+                  <span class="impact-tag">Enter your own amount</span>
+                </button>
+              </div>
+
+              <!-- Custom Amount Input -->
+              <div class="custom-amount-wrap" id="custom-amount-wrap" style="display:none;">
+                <span class="currency-symbol">₦</span>
+                <input type="number" class="custom-amount-input" id="custom-input"
+                  placeholder="Enter amount" min="100"
+                  oninput="onCustomInput(this.value)">
+              </div>
+
+              <hr style="border-color:var(--border); margin: 1.5rem 0;">
+
+              <!-- Donor Info -->
+              <span class="tier-label">Your details</span>
+
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="donor-name">Full Name <span style="color:var(--red)">*</span></label>
+                  <input type="text" id="donor-name" placeholder="e.g. Chidi Okafor" required>
+                </div>
+                <div class="field-group">
+                  <label for="donor-email">Email Address <span style="color:var(--red)">*</span></label>
+                  <input type="email" id="donor-email" placeholder="you@example.com" required>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field-group">
+                  <label for="donor-phone">Phone Number</label>
+                  <input type="tel" id="donor-phone" placeholder="+234 800 000 0000">
+                </div>
+                <div class="field-group">
+                  <label for="donor-project">Dedicate to a Project</label>
+                  <select id="donor-project">
+                    <option value="" selected>General Fund</option>
+                    <option>School Outreach — "My Body, My Right"</option>
+                    <option>Community Health Check-up</option>
+                    <option>Media & Tech Youth Accelerator</option>
+                    <option>Where it's needed most</option>
+                  </select>
+                </div>
+              </div>
+
+              <hr style="border-color:var(--border); margin: 1.5rem 0;">
+
+              <!-- Upload Proof -->
+              <span class="tier-label">Upload payment proof <span style="color:var(--red)">*</span></span>
+              <p style="font-size:0.78rem; color:var(--muted); margin-bottom:0.85rem;">After transferring, upload a screenshot or photo of your bank receipt below.</p>
+
+              <div class="upload-zone" id="upload-zone">
+                <input type="file" id="proof-file" accept="image/*,.pdf" onchange="handleFileSelect(this)">
+                <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <p class="upload-title">Tap to upload your receipt</p>
+                <p class="upload-sub">JPG, PNG or PDF · Max 10MB</p>
+              </div>
+              <div class="upload-preview" id="upload-preview">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="upload-filename">receipt.jpg</span>
+              </div>
+
+              <!-- Error message -->
+              <div id="form-error" style="display:none; color:var(--red); font-size:0.8rem; margin-top:1rem; padding:0.65rem 0.9rem; background:rgba(229,0,0,0.05); border-radius:8px; border:1px solid rgba(229,0,0,0.15);">
+                <i class="fa-solid fa-triangle-exclamation me-1"></i>
+                <span id="error-text">Please fill in all required fields.</span>
+              </div>
+
+              <!-- Submit Channels -->
+              <div class="submit-section">
+                <span class="submit-label">Send proof via</span>
+                <div class="submit-channels">
+                  <button class="channel-btn whatsapp" onclick="submitViaWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Send via WhatsApp
+                  </button>
+                  <button class="channel-btn email-ch" onclick="submitViaEmail()">
+                    <i class="fa-solid fa-envelope"></i>
+                    Send via Email
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Bank Details Panel -->
+        <div class="col-lg-4 col-xl-4">
+          <div class="bank-panel">
+            <div class="bank-panel-header">
+              <i class="fa-solid fa-building-columns"></i>
+              <span>Bank Transfer Details</span>
+            </div>
+            <div class="bank-panel-body">
+
+              <div class="bank-detail-row">
+                <span class="bank-detail-label">Account Number</span>
+                <div class="bank-detail-value">
+                  123456789
+                  <button class="copy-btn" id="copy-acct" onclick="copyText('123456789', 'copy-acct')">
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+
+              <div class="bank-detail-row">
+                <span class="bank-detail-label">Bank Name</span>
+                <div class="bank-detail-value small">United Bank for Africa (UBA)</div>
+              </div>
+
+              <div class="bank-detail-row">
+                <span class="bank-detail-label">Account Name</span>
+                <div class="bank-detail-value small">Uccareforall INT</div>
+              </div>
+
+              <p style="font-size:0.8rem; color:var(--muted); margin-bottom:1.25rem; font-weight:500;">How to complete your donation:</p>
+              <ol class="steps-list">
+                <li>Open your bank app or visit any UBA branch.</li>
+                <li>Transfer your chosen amount to the account above.</li>
+                <li>Take a <strong>screenshot</strong> of your payment confirmation.</li>
+                <li>Fill in the form and submit the screenshot via <strong>WhatsApp or Email</strong>.</li>
+                <li>We will confirm your donation within <strong>24 hours</strong> and send you a receipt.</li>
+              </ol>
+
+              <div class="security-badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>All donation records are securely stored and acknowledged.</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Success Overlay ── -->
+  <div class="success-overlay" id="success-overlay" onclick="closeSuccess(event)">
+    <div class="success-modal">
+      <div class="success-ring"><i class="fa-solid fa-heart"></i></div>
+      <p class="success-title">Thank you.</p>
+      <p class="success-body" id="success-body">
+        Your payment proof has been sent. Our team will verify your donation and send you a confirmation within 24 hours. You're making a real difference.
+      </p>
+      <button class="success-close" onclick="document.getElementById('success-overlay').classList.remove('show')">
+        Close
+      </button>
+    </div>
+  </div>
+
+    <!-- FOOTER MODULE -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 footer-left-content">
+                    <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo" class="footer-logo mb-3">
+                    <h4 class="footer-company-name mb-2">Uccareforall Initiative</h4>
+                    <p class="footer-tagline mb-3">Strategic Advisory | Sector Agnostic | Results-Driven</p>
+                    <p class="footer-description mb-4 mb-lg-0">
+                         We collaborate with schools, corporate sponsors, and local government frameworks 
+                    to maximize our footprint. Partner with us to scale our next community intervention.
+                    </p>
+                </div>
+                <div class="col-lg-4 footer-right-content d-flex justify-content-center justify-content-lg-end">
+                    <a href="./donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2">
+                        <i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;"></i> Donate
+                    </a>
+                </div> 
+            </div>
+        </div>
+    </footer>
+
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row align-items-center py-4">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <p class="footer-contact-info mb-1 fw-semibold text-white">Seventh Ave, 20th Floor</p>
+                    <p class="footer-contact-info mb-0">Ebute Metta, Lagos</p>
+                    <p class="footer-contact-info mb-0">Nigeria</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <p class="footer-contact-info mb-1 fw-semibold text-white">+44 7932 485377</p>
+                    <p class="footer-contact-info mb-0">E: info@Uccareforall.com</p>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
+                    <div class="social-icons d-flex gap-1">
+                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-x-twitter"></i></a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-bar">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+            <p class="mb-0">&copy; <span id="year"></span> Uccareforall Initiative</p>
+            <p class="mb-0">
+                <a href="#" class="copyright-link me-3">Terms & Conditions</a>
+                <a href="#" class="copyright-link">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('year').innerText = new Date().getFullYear();
+    </script>
+     <script src="../assets/Js/script.js"></script> 
+</body>
+</html>

@@ -5,10 +5,841 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Uccareforall initiative</title>
   <link rel="stylesheet" href="./assets/css/uccare.css">
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --red:    #E50000;
+      --orange: #FF5B00;
+      --amber:  #e27231;
+      --cream:  #FAF7F2;
+      --ink:    #1A1208;
+      --muted:  #f1b554;
+      --border: #E8E2D9;
+      --white:  #FFFFFF;
+      --text-muted: #6B6254;
+    }
+ 
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
+ 
+    /* ── Eyebrow ── */
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: block;
+      margin-bottom: 0.9rem;
+    }
+ 
+    /* ════════════════════════════
+       NAVBAR
+    ════════════════════════════ */
+    .navbar {
+      background: var(--white) !important;
+      border-bottom: 1px solid var(--border);
+      padding: 0.85rem 0;
+      z-index: 1000;
+    }
+    .nav-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      color: var(--ink) !important;
+      padding: 0.4rem 0.9rem !important;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--red) !important; }
+    .nav-link.active { color: var(--red) !important; font-weight: 500; }
+ 
+    /* ════════════════════════════
+       HERO
+    ════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('../images/uc-medical/hero-1.png');
+      background-size: cover;
+      background-position: center top;
+      z-index: 0;
+    }
+    /* layered gradient: bottom-up dark for text, slight top vignette */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(26,18,8,0.88) 0%, rgba(26,18,8,0.35) 45%, rgba(26,18,8,0.15) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 0 5rem;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(226,114,49,0.18);
+      border: 1px solid rgba(226,114,49,0.35);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag i { font-size: 0.65rem; color: var(--amber); }
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+      max-width: 720px;
+    }
+    .hero-headline em { font-style: italic; color: var(--muted); }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-hero-primary {
+      padding: 0.85rem 2rem;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-hero-primary:hover { opacity: 0.88; transform: translateY(-2px); color: var(--white); }
+    .btn-hero-ghost {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+    }
+    .btn-hero-ghost:hover { border-color: var(--muted); color: var(--muted); transform: translateY(-2px); }
+ 
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 2.5rem;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .scroll-hint-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.7); }
+    }
+ 
+    /* ════════════════════════════
+       IMPACT TICKER STRIP
+    ════════════════════════════ */
+    .ticker-strip {
+      background: var(--ink);
+      padding: 2.5rem 0;
+      overflow: hidden;
+    }
+    .ticker-inner {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .ticker-item {
+      text-align: center;
+      padding: 0.75rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      flex: 1;
+      min-width: 160px;
+    }
+    .ticker-item:last-child { border-right: none; }
+    .ticker-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+    }
+    .ticker-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      display: block;
+    }
+    .ticker-num.counting { color: var(--muted); }
+ 
+    /* ════════════════════════════
+       CORE PILLARS
+    ════════════════════════════ */
+    .pillars-section {
+      background: var(--cream);
+      padding: 7rem 0;
+    }
+    .pillars-section .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .pillars-section .section-heading em { font-style: italic; color: var(--amber); }
+    .section-intro { font-size: 0.9rem; color: var(--text-muted); line-height: 1.75; max-width: 500px; }
+ 
+    .pillar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      height: 100%;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--red), var(--orange), var(--amber));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-5px);
+      border-color: transparent;
+      box-shadow: 0 12px 40px rgba(26,18,8,0.1);
+    }
+    .pillar-card:hover::before { opacity: 1; }
+    .pillar-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--amber));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+    }
+    .pillar-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.65rem;
+    }
+    .pillar-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; }
+ 
+    /* ════════════════════════════
+       ABOUT STRIP
+    ════════════════════════════ */
+    .about-strip {
+      background: var(--white);
+      padding: 7rem 0;
+    }
+    .about-strip .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .about-strip .section-heading em { font-style: italic; color: var(--amber); }
+    .about-strip p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.85; margin-bottom: 1rem; }
+    .about-strip strong { color: var(--ink); }
+    .about-strip .learn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--amber);
+      text-decoration: none;
+      margin-top: 0.5rem;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .about-strip .learn-link:hover { border-color: var(--amber); }
+ 
+    /* Quote callout on right side */
+    .about-callout {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-callout::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,114,49,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .callout-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+      font-weight: 600;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 2rem;
+    }
+    .callout-quote em { color: var(--muted); font-style: normal; }
+    .callout-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+    }
+    .c-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .c-stat-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+ 
+    /* ════════════════════════════
+       KING WALKS AFRICA BANNER
+    ════════════════════════════ */
+    .kwa-banner {
+      background: var(--ink);
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .kwa-banner::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 30%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,114,49,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .kwa-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(226,114,49,0.15);
+      border: 1px solid rgba(226,114,49,0.3);
+      border-radius: 50px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .kwa-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .kwa-headline em { font-style: italic; color: var(--muted); }
+    .kwa-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--amber);
+      margin-bottom: 1rem;
+    }
+    .kwa-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+    .kwa-flags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .kwa-flag-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .kwa-flag-chip span { font-size: 1.1rem; }
+    .kwa-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .kwa-crown-wrap {
+      font-size: 6rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 50px rgba(226,114,49,0.35));
+      margin-bottom: 1.5rem;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-kwa {
+      padding: 0.85rem 2rem;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-kwa:hover { opacity: 0.88; transform: translateY(-2px); color: var(--white); }
+ 
+    /* ════════════════════════════
+       CAMPAIGNS — FLIP CARDS
+    ════════════════════════════ */
+    .campaigns-section {
+      background: var(--cream);
+      padding: 7rem 0;
+    }
+    .campaigns-section .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .campaigns-section .section-heading em { font-style: italic; color: var(--amber); }
+    .campaigns-intro { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; }
+ 
+    /* Flip card */
+    .flip-card {
+      height: 420px;
+      perspective: 1200px;
+      cursor: pointer;
+    }
+    .flip-card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-front, .flip-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+ 
+    /* Front */
+    .flip-front {
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .flip-front-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .flip-front-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .flip-front-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.6rem;
+    }
+    .flip-front-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+    .flip-front-summary { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; flex: 1; }
+    .flip-hint {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.7rem;
+      color: var(--amber);
+      margin-top: 0.75rem;
+    }
+    .flip-hint i { font-size: 0.65rem; }
+ 
+    /* Back */
+    .flip-back {
+      transform: rotateY(180deg);
+      background: var(--ink);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .flip-back::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,114,49,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .flip-back-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .flip-back-body { font-size: 0.83rem; color: rgba(255,255,255,0.6); line-height: 1.75; flex: 1; }
+    .flip-back-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      margin-top: 1.25rem;
+      transition: gap 0.2s;
+    }
+    .flip-back-cta:hover { gap: 10px; color: var(--muted); }
+ 
+    /* ════════════════════════════
+       CONTACT
+    ════════════════════════════ */
+    .contact-section {
+      background: var(--white);
+      padding: 7rem 0;
+    }
+    .contact-section .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+    .contact-section .section-heading em { font-style: italic; color: var(--amber); }
+ 
+    .contact-form-card {
+      background: var(--cream);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 3rem;
+    }
+    .form-field { margin-bottom: 1.25rem; }
+    .form-field label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 0.78rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(226,114,49,0.12);
+    }
+    .form-field textarea { resize: vertical; min-height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-send {
+      width: 100%;
+      padding: 0.95rem;
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--amber));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 0.5rem;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-send:hover { opacity: 0.88; transform: translateY(-1px); }
+ 
+    /* Contact info sidebar */
+    .contact-info-card {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: 2.5rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-info-card::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,114,49,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .contact-info-sub { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.65; margin-bottom: 2rem; }
+    .info-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .info-icon {
+      width: 36px; height: 36px;
+      background: rgba(226,114,49,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon i { color: var(--amber); font-size: 0.85rem; }
+    .info-label { font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+    .info-value { font-size: 0.875rem; color: var(--white); line-height: 1.5; }
+ 
+    .social-row { display: flex; gap: 8px; margin-top: 2rem; }
+    .soc-link {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .soc-link:hover { background: rgba(226,114,49,0.15); color: var(--amber); }
+ 
+    /* ════════════════════════════
+       VOLUNTEER MODAL
+    ════════════════════════════ */
+    .modal-content { border-radius: 20px; border: none; overflow: hidden; }
+    .modal-header-band {
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--amber));
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-header-band h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      margin: 0;
+    }
+    .modal-header-band .btn-close-white {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.25rem;
+      cursor: pointer;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .modal-header-band .btn-close-white:hover { opacity: 1; }
+    .modal-body { padding: 2rem; background: var(--white); }
+    .modal-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.75rem; }
+    .vol-success { display: none; text-align: center; padding: 2rem 1rem; }
+    .vol-success-icon {
+      width: 60px; height: 60px;
+      background: rgba(226,114,49,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .vol-success-icon i { color: var(--amber); font-size: 1.4rem; }
+    .vol-success-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .vol-success-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+ 
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    .main-footer { background: var(--ink); padding: 3.5rem 0 0; }
+    .footer-logo { max-height: 40px; filter: brightness(0) invert(1); opacity: 0.55; }
+    .footer-org-name { font-size: 1rem; font-weight: 600; color: var(--white); margin: 0.75rem 0 0.25rem; }
+    .footer-tagline { font-size: 0.68rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
+    .footer-desc { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.75; margin-top: 0.75rem; max-width: 380px; }
+    .footer-col-title { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+    .footer-link { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .footer-link:hover { color: var(--muted); }
+    .footer-donate-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, var(--red), var(--orange));
+      color: var(--white);
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .footer-donate-btn:hover { opacity: 0.88; color: var(--white); }
+ 
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      margin-top: 3rem;
+      padding: 1.25rem 0;
+    }
+    .footer-contact-info { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-bottom: 2px; }
+    .footer-contact-info a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-contact-info a:hover { color: var(--muted); }
+    .copyright { font-size: 0.75rem; color: rgba(255,255,255,0.2); }
+    .copyright-link { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.75rem; }
+    .copyright-link:hover { color: var(--muted); }
+ 
+    /* ════════════════════════════
+       RESPONSIVE
+    ════════════════════════════ */
+    @media (max-width: 991px) {
+      .ticker-item { min-width: 130px; padding: 0.75rem 1.5rem; }
+      .about-callout { margin-top: 2.5rem; }
+      .kwa-right { align-items: center; margin-top: 3rem; }
+      .contact-info-card { margin-top: 2rem; }
+    }
+    @media (max-width: 767px) {
+      .pillars-section, .about-strip, .campaigns-section, .contact-section { padding: 4.5rem 0; }
+      .kwa-banner { padding: 3rem 0; }
+      .form-row { grid-template-columns: 1fr; }
+      .flip-card { height: 460px; }
+      .ticker-item { min-width: 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .ticker-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.07); }
+      .contact-form-card { padding: 2rem 1.5rem; }
+      .callout-stats { grid-template-columns: 1fr 1fr; }
+      .scroll-hint { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -22,346 +853,403 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="./pages/about-us.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="./pages/projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Publications</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Strategies</a></li>
+          <li class="nav-item"><a class="nav-link" href="./pages/partner.html">Strategic Partnership</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li>
           
         </ul>
       </div>
       <div class="navbar-right d-none d-lg-block">
-        <a href="#" class="btn btn-danger"><i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;" ></i> Donate</a>
+        <a href="./pages/donate.html" class="btn btn-danger"><i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;" ></i> Donate</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero d-flex flex-column justify-content-center align-items-center">
-    <h1>Educate. Empower. Transform.</h1>
-    <h3>"Be A Better You."</h3>
-    <!-- <p>Building resilient, safe, and empowered communities across Africa through advocacy, healthcare, and sustainable skill acquisition.</p> -->
-    <div class="d-flex gap-3" style="margin-top: 70px;">
-      <a href="#" class="btn btn-primary">Get Involved</a>
-      <a href="#" class="btn btn-outline-primary">Our Campaigns</a>
+  <!-- ════════════════════
+       HERO
+  ════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-tag">
+        <i class="fa-solid fa-location-dot"></i>
+        Lagos, Nigeria — Field Since 2019
+      </div>
+      <h1 class="hero-headline">
+        Be A<br><em>Better You.</em>
+      </h1>
+      <p class="hero-sub">
+        Building resilient, safe, and empowered communities across Africa through advocacy, free healthcare, and sustainable skill acquisition.
+      </p>
+      <div class="hero-actions">
+        <a href="./pages/partner.html" class="btn-hero-primary">
+          <i class="fa-solid fa-handshake"></i> Get Involved
+        </a>
+        <a href="#campaigns" class="btn-hero-ghost">
+          <i class="fa-solid fa-arrow-down"></i> Our Campaigns
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-hint-line"></div>
+      Scroll
+    </div>
+  </section>
+ 
+  <!-- ════════════════════
+       IMPACT TICKER
+  ════════════════════ -->
+  <div class="ticker-strip">
+    <div class="container">
+      <div class="ticker-inner">
+        <div class="ticker-item">
+          <span class="ticker-num" data-target="2000" data-suffix="+">0</span>
+          <span class="ticker-label">Clean Water Access</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-num" data-target="1000" data-suffix="+">0</span>
+          <span class="ticker-label">Free Health Consultations</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-num" data-target="500" data-suffix="+">0</span>
+          <span class="ticker-label">Women Empowered</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-num" data-target="25" data-suffix=" States">0</span>
+          <span class="ticker-label">Campaign Reach</span>
+        </div>
+        <div class="ticker-item">
+          <span class="ticker-num" data-target="100" data-suffix="+">0</span>
+          <span class="ticker-label">Youths Trained</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ════════════════════
+       CORE PILLARS
+  ════════════════════ -->
+  <section class="pillars-section">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">What We Stand On</span>
+          <h2 class="section-heading">The <em>Core Pillars</em><br>of our work.</h2>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <p class="section-intro">Every programme we deliver is built on four foundational pillars — each designed to create measurable, lasting change in the communities we serve.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="pillar-card">
+            <div class="pillar-icon">🛡️</div>
+            <div class="pillar-title">Advocacy & Protection</div>
+            <p class="pillar-body">Breaking the silence on sexual violence through school seminars, global awareness campaigns, and resource guides for survivors.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pillar-card">
+            <div class="pillar-icon">🩺</div>
+            <div class="pillar-title">Free Healthcare Access</div>
+            <p class="pillar-body">Bringing medical check-ups, blood sugar screenings, vital consultations, and free medications directly to underserved communities.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pillar-card">
+            <div class="pillar-icon">⚡</div>
+            <div class="pillar-title">Skill Acquisition & Empowerment</div>
+            <p class="pillar-body">Equipping youths and women with self-sustaining skills — from digital marketing and photography to culinary arts and pastry making.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="pillar-card">
+            <div class="pillar-icon">🏗️</div>
+            <div class="pillar-title">Community Infrastructure</div>
+            <p class="pillar-body">Providing critical clean water projects and school outreach support to communities that need it most across Nigeria and Africa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ════════════════════
+       ABOUT STRIP
+  ════════════════════ -->
+  <section class="about-strip">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+          <span class="eyebrow">Who We Are</span>
+          <h2 class="section-heading">Not a desk<br><em>organisation.</em></h2>
+          <p>Founded in 2019 by <strong>Ofon Umoh</strong> — known globally as The Modeling King — UC Careforall Initiative started with zero funding and a team of passionate volunteers. Six years later, we are a multi-programme organisation delivering verified impact across Nigeria and expanding across Africa.</p>
+          <p>We are rooted in Ebute Metta, Lagos, guided by the principles of safety, equality, and human dignity. We do not give aid and walk away — we build capacity, document every result, and share it with the world.</p>
+          <a href="./pages/about-us.html" class="learn-link">
+            Read our full story <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-callout">
+            <p class="callout-quote">
+              "We made a decision to stop watching from the sidelines and become <em>part of the solution.</em>"
+            </p>
+            <div>
+              <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:1.25rem;font-style:italic;">— Ofon Umoh, Founder & Director</p>
+              <div class="callout-stats">
+                <div>
+                  <div class="c-stat-num">6 yrs</div>
+                  <div class="c-stat-label">In the Field</div>
+                </div>
+                <div>
+                  <div class="c-stat-num">1M+</div>
+                  <div class="c-stat-label">Organic Reach</div>
+                </div>
+                <div>
+                  <div class="c-stat-num">4</div>
+                  <div class="c-stat-label">Core Programmes</div>
+                </div>
+                <div>
+                  <div class="c-stat-num">2019</div>
+                  <div class="c-stat-label">Year Founded</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ════════════════════
+       KING WALKS AFRICA
+  ════════════════════ -->
+  <div class="kwa-banner">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="kwa-pill"><i class="fa-solid fa-crown"></i> Current Initiative</div>
+          <h2 class="kwa-headline">The King<br><em>Walks Africa.</em></h2>
+          <p class="kwa-tagline">One King. One Country. One Well.</p>
+          <p class="kwa-body">Our most ambitious programme — our founder travels across African countries in full traditional Nigerian royal attire, documenting culture and commissioning one solar-powered water project per country. The entire journey is shared globally across Instagram, Facebook, TikTok, and YouTube.</p>
+          <div class="kwa-flags">
+            <div class="kwa-flag-chip"><span>🇳🇬</span> Nigeria</div>
+            <div class="kwa-flag-chip"><span>🇬🇭</span> Ghana — Next</div>
+            <div class="kwa-flag-chip"><span>🇱🇷</span> Liberia — Planned</div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="kwa-right">
+            <div class="kwa-crown-wrap">👑</div>
+            <a href="./pages/about-us.html#kwa" class="btn-kwa">
+              <i class="fa-solid fa-arrow-right"></i> Learn About This Initiative
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ════════════════════
+       CAMPAIGNS FLIP CARDS
+  ════════════════════ -->
+  <section class="campaigns-section" id="campaigns">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">On the Ground</span>
+          <h2 class="section-heading">Our <em>Campaigns.</em></h2>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <p class="campaigns-intro">We go where people live, learn, worship, commute, and gather. Across 25 states, one message: <strong>Be A Better You.</strong> Hover any card to read the full story.</p>
+        </div>
+      </div>
+ 
+      <div class="row g-4">
+ 
+        <div class="col-sm-6 col-lg-3">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-front">
+                <img src="./assets/images/school-outreach/1.1.png" alt="Community Outreach" class="flip-front-img">
+                <div class="flip-front-body">
+                  <div class="flip-front-tag">Door-to-Door</div>
+                  <div class="flip-front-title">Community Outreach Campaign</div>
+                  <p class="flip-front-summary">Driving community transformation through grassroots engagement.</p>
+                  <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Hover to read more</div>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="flip-back-title">Community Outreach Campaign</div>
+                <p class="flip-back-body">Our door-to-door outreach brings awareness and education directly into homes. Field teams engage families within neighbourhoods, delivering impactful messages on violence prevention, personal development, and community empowerment. No community is too remote. We meet people where they are.</p>
+                <a href="./pages/projects.html" class="flip-back-cta">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-sm-6 col-lg-3">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-front">
+                <img src="./assets/images/school-outreach/1.2.png" alt="School Outreach" class="flip-front-img">
+                <div class="flip-front-body">
+                  <div class="flip-front-tag">Education</div>
+                  <div class="flip-front-title">School Outreach Program</div>
+                  <p class="flip-front-summary">Empowering students with awareness, mentorship, and learning materials.</p>
+                  <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Hover to read more</div>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="flip-back-title">School Outreach Program</div>
+                <p class="flip-back-body">Transformation begins with education. Our school outreach delivers awareness, mentorship, and empowerment directly to students. Each visit includes distribution of school bags, books, pens, and resources — equipping every student with the tools to learn, grow, and build a brighter future.</p>
+                <a href="./pages/projects.html?id=school-outreach" class="flip-back-cta">View Project <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-sm-6 col-lg-3">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-front">
+                <img src="./assets/images/1.3.png" alt="State-to-State Campaign" class="flip-front-img">
+                <div class="flip-front-body">
+                  <div class="flip-front-tag">Nationwide</div>
+                  <div class="flip-front-title">State-to-State Volunteer Campaign</div>
+                  <p class="flip-front-summary">A nationwide movement of trained volunteers across 25 states.</p>
+                  <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Hover to read more</div>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="flip-back-title">State-to-State Volunteer Campaign</div>
+                <p class="flip-back-body">One of our most ambitious initiatives. We mobilise and train volunteers across 25 Nigerian states, equipping them with the tools and knowledge to carry the "Be A Better You" message back to their communities. United by a shared vision, these volunteers form a nationwide movement for social transformation.</p>
+                <a href="./pages/projects.html" class="flip-back-cta">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="col-sm-6 col-lg-3">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-front">
+                <img src="./assets/images/1.5.png" alt="Traffic Campaign" class="flip-front-img">
+                <div class="flip-front-body">
+                  <div class="flip-front-tag">Street Level</div>
+                  <div class="flip-front-title">Traffic Awareness Campaign</div>
+                  <p class="flip-front-summary">Taking the message to the streets — reaching thousands daily.</p>
+                  <div class="flip-hint"><i class="fa-solid fa-rotate"></i> Hover to read more</div>
+                </div>
+              </div>
+              <div class="flip-back">
+                <div class="flip-back-title">Traffic Awareness Campaign</div>
+                <p class="flip-back-body">We take our message to busy intersections, engaging commuters, motorists, and pedestrians across Nigerian cities. Through direct street-level engagement, we spread awareness on violence prevention, civic responsibility, and community empowerment — reaching thousands daily with the "Be A Better You" message.</p>
+                <a href="./pages/projects.html" class="flip-back-cta">View Projects <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ════════════════════
+       CONTACT
+  ════════════════════ -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="eyebrow">Reach Out</span>
+        <h2 class="section-heading">Get in <em>Touch</em> With Us</h2>
+        <p style="font-size:0.9rem;color:var(--text-muted);max-width:480px;margin:0.5rem auto 0;line-height:1.75;">Whether you want to partner, volunteer, donate, or simply ask a question — we want to hear from you.</p>
+      </div>
+ 
+      <div class="row g-5">
+        <div class="col-lg-7">
+          <div class="contact-form-card">
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="c-name">Your Name <span style="color:var(--red)">*</span></label>
+                  <input type="text" id="c-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-field">
+                  <label for="c-email">Your Email <span style="color:var(--red)">*</span></label>
+                  <input type="email" id="c-email" placeholder="name@example.com" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="c-subject">Subject <span style="color:var(--red)">*</span></label>
+                <input type="text" id="c-subject" placeholder="What is this about?" required>
+              </div>
+              <div class="form-field">
+                <label for="c-message">Your Message <span style="color:var(--red)">*</span></label>
+                <textarea id="c-message" placeholder="Type your message here..." required></textarea>
+              </div>
+              <div id="contact-error" style="display:none;color:var(--red);font-size:0.8rem;margin-bottom:0.75rem;">Please fill in all required fields.</div>
+              <button type="submit" class="btn-send">
+                <i class="fa fa-envelope-open"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+ 
+        <div class="col-lg-5">
+          <div class="contact-info-card">
+            <p class="contact-info-title">We're in the field,<br>not behind a desk.</p>
+            <p class="contact-info-sub">Reach us through any of these channels and our team will respond within 48 hours.</p>
+ 
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div class="info-label">Address</div>
+                <div class="info-value">Seventh Ave, 20th Floor<br>Ebute Metta, Lagos, Nigeria</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <div class="info-label">Phone</div>
+                <div class="info-value">+44 7932 485377</div>
+              </div>
+            </div>
+            <div class="info-row">
+              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <div class="info-label">Email</div>
+                <div class="info-value"><a href="mailto:info@Uccareforall.com" style="color:var(--white);text-decoration:none;">info@Uccareforall.com</a></div>
+              </div>
+            </div>
+ 
+            <div class="social-row">
+              <a href="#" class="soc-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="soc-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="soc-link" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" class="soc-link" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="#" class="soc-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="#" class="soc-link" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+ 
+            <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.07);">
+              <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:1rem;">Ready to take action right now?</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <a href="./pages/donate.html" style="padding:0.6rem 1.25rem;background:linear-gradient(135deg,var(--red),var(--orange));color:var(--white);border-radius:50px;font-size:0.8rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:7px;">
+                  <i class="fa-solid fa-heart"></i> Donate
+                </a>
+                <button data-bs-toggle="modal" data-bs-target="#volunteerModal" style="padding:0.6rem 1.25rem;background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);border-radius:50px;font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:7px;">
+                  <i class="fa-solid fa-user-plus"></i> Volunteer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Core Pillars --> 
-
-<section class="goals-section">
-    <div class="container">
-
-        <h2 class="section-title">
-            The Core Pillars
-        </h2>
-
-        <div class="cards-grid">
-
-            <div class="card">
-                <div class="icon">🛡️</div>
-                <h3 class="core-head">Advocacy & Protection</h3>
-                <p>
-                    Breaking the silence on sexual violence through school seminars,
-                     global awareness campaigns, and providing resource guides for survivors.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🔭</div>
-                <h3 class="core-head">Free Healthcare Access</h3>
-                <p>
-                   Bringing medical check-ups, blood sugar screenings, vital consultations, 
-                   and free medications directly to underserved communities.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">⭐</div>
-                <h3 class="core-head">Skill Acquisition & Economic Empowerment</h3>
-               <p>
-                    Equipping youths and women with modern, self-sustaining skills—ranging 
-                    from digital marketing and photography to culinary arts and pastry making.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🎯</div>
-                <h3 class="core-head">Community Infrastructure</h3>
-                <p>
-                    Providing critical clean water projects and 
-                    school outreach support to communities that need it most.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<!-- About Section -->
-<section class="about-us-section" id="about-us-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 d-flex align-items-center">
-                <div class="about-content">
-                    <small class="about-title">About Us</small>   
-                    <div id="initial-about-content"> 
-                        <p class="about-text">
-                            Rooted in Ebute Metta, Lagos, Nigeria, we are dedicated to driving sustainable social impact across Africa. Guided by the principles of safety, equality, and human dignity, 
-                            we champion the protection of human rights, advocate for justice, and support vulnerable communities. Alongside our advocacy efforts, we deliver critical healthcare assistance to underserved populations, helping to ensure that access to quality medical care is not limited by geography or economic circumstances. Through these combined efforts, we strive to build healthier, safer, and more inclusive communities for generations to come.
-                        </p>
-                        <a href="./pages/about-us.html" class="learn-more-link" id="learn-more-btn">Learn more <i class="fas fa-arrow-right"></i></a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-6 d-flex align-items-center justify-content-center text-center about-pattern-column">
-                <h2 class="gradient-text">Transforming Communities.<br>Empowering Minds.<br> Securing the Future.</h2>
-                
-
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="our-solutions-section py-5" id="Our-Solutions">
-    <div class="container">
-        <h2 class="our-services-title text-center">Our Campaigns</h2>
-        <p class="solutions-description text-justify mx-auto mb-5">
-           At UC Careforall Initiative, we believe meaningful change happens when the message is taken directly to the people. Rather than waiting for communities to come to us, we reach individuals where they live, learn, worship, commute, and gather.
-Our campaigns have impacted thousands of Nigerians across 25 states through five key outreach channels: door-to-door community engagement, school outreach programs, traffic awareness campaigns, state-to-state volunteer mobilization, and faith-based awareness initiatives.
-Every campaign is driven by one guiding <strong>message: “Be A Better You.”</strong> Because when individuals improve themselves, communities grow stronger, and Africa becomes better.
-        </p>
-
-        <div class="solutions-cards-grid row justify-content-center g-4">
-           
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="solution-card">
-                    <div class="solution-card-inner">
-                        <div class="solution-card-front">
-                            <div class="solution-image-wrapper">
-                                <img src="./assets/images/1.1.png" alt="Laptop Screen 1" class="solution-image">
-                            </div>
-                            <h3 class="solution-card-heading">Community Outreach (Door-to-Door Campaign)</h3>
-                            <p class="solution-card-summary">
-                                Driving community transformation through grassroots engagement and nationwide outreach.
-                            </p>
-                        </div>
-                        <div class="solution-card-back">
-                            <h3 class="solution-card-heading-back">Community Outreach</h3>
-                            <p class="solution-card-detailed">
-                              Our door-to-door community outreach brings awareness and education directly into homes. Field teams engage families and individuals within neighbourhoods, delivering impactful 
-                              messages on violence prevention, personal development, and community empowerment.
-                             No community is too remote, and no household is too small. We meet people where they are to create meaningful, personal connections that inspire change.
-                            </p>
-                            <!-- <a href="#" class="solution-learn-more-back">Learn More <i class="fas fa-arrow-right"></i></a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="solution-card">
-                    <div class="solution-card-inner">
-                        <div class="solution-card-front">
-                            <div class="solution-image-wrapper">
-                                <img src="./assets/images/1.2.png" alt="Laptop Screen 2" class="solution-image">
-                            </div>
-                            <h3 class="solution-card-heading">School Outreach Program</h3>
-                            <p class="solution-card-summary">
-                               Empowering communities across Nigeria through awareness, education.
-                            </p>
-                        </div>
-                        <div class="solution-card-back">
-                            <h3 class="solution-card-heading-back">School Outreach Program</h3>
-                            <p class="solution-card-detailed">
-                                At UC Careforall, we believe that transformation begins with education. Our school outreach program delivers awareness, mentorship, and empowerment directly to students across Nigeria.
-                                Each visit includes the distribution of essential learning materials such as school bags, books, pens, and educational 
-                                resources—helping to equip students with the tools they need to learn, grow, and build a brighter future.
-                            </p>
-                            <!-- <a href="#" class="solution-learn-more-back">Learn More <i class="fas fa-arrow-right"></i></a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="solution-card">
-                    <div class="solution-card-inner">
-                        <div class="solution-card-front">
-                            <div class="solution-image-wrapper">
-                                <img src="./assets/images/1.3.png" alt="Laptop Screen 3" class="solution-image">
-                            </div>
-                            <h3 class="solution-card-heading">State-to-State Volunteer Campaign</h3>
-                            <p class="solution-card-summary">
-                               Expanding impact through local engagement and nationwide outreach.
-                            </p>
-                        </div>
-                        <div class="solution-card-back">
-                            <h3 class="solution-card-heading-back">State-to-State Volunteer Campaign</h3>
-                            <p class="solution-card-detailed">
-                               This is one of our most ambitious initiatives. We mobilize and train volunteers across 25 states in Nigeria, 
-                               equipping them with the tools and knowledge to carry the “Be A Better You” message back to their local communities.
-                                United by a shared vision, these volunteers form a nationwide movement dedicated to positive change and social transformation.
-                            </p>
-                            <!-- <a href="#" class="solution-learn-more-back">Learn More <i class="fas fa-arrow-right"></i></a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Solution Card 4: Example (You can add more as needed) -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="solution-card">
-                    <div class="solution-card-inner">
-                        <div class="solution-card-front">
-                            <div class="solution-image-wrapper">
-                                <img src="./assets/images/1.5.png" alt="Laptop Screen 4" class="solution-image">
-                            </div>
-                            <h3 class="solution-card-heading">Traffic Awareness Campaign</h3>
-                            <p class="solution-card-summary">
-                               Bringing change closer to people, one community at a time.
-                            </p>
-                        </div>
-                        <div class="solution-card-back">
-                            <h3 class="solution-card-heading-back">Traffic Awareness Campaign</h3>
-                            <p class="solution-card-detailed">
-                               Our traffic awareness campaign takes our message to the streets, engaging commuters, motorists, and pedestrians at busy intersections across Nigerian cities.
-                               Through direct engagement, we spread awareness on violence prevention, civic responsibility, 
-                                and community empowerment, reaching thousands of people daily with the “Be A Better You” message.
-                            </p>
-                            <a href="#" class="solution-learn-more-back">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-
-<!-- <section class="industries-we-serve-section py-5">
-    <div class="custom-content-wrapper">
-         <small class="text-uppercase text-muted industries-badge">Industries We Serve</small>
-        <div class="text-center mb-5">
-           
-            <h2 class="our-services-title">Strategic Partnerships Across Sectors</h2>
-        </div>
-
-        <div class="industry-cards-grid-layout" id="industryCardsContainer">
-            <div class="industry-card">
-                <img src="assets/images/oil-and-gas.jpg" alt="Real Estate Icon" class="industry-icon">
-                <span class="industry-name">Oil and Gas</span>
-            </div>
-            <div class="industry-card">
-                <img src="assets/images/mining.jpeg" alt="Real Estate Icon" class="industry-icon">
-                <span class="industry-name">Mining</span>
-            </div>
-            <div class="industry-card">
-                <img src="assets/images/real-estate.jpg" alt="Real Estate Icon" class="industry-icon">
-                <span class="industry-name">Real Estate</span>
-            </div>
-            <div class="industry-card">
-                <img src="assets/images/fintech.jpg" alt="Fintech Icon" class="industry-icon">
-                <span class="industry-name">Fintech</span>
-            </div>
-            <div class="industry-card">
-                <img src="assets/images/Logistics-Infras.jpg" alt="Infrastructure Icon" class="industry-icon">
-                <span class="industry-name">Logistics & Infrastructure</span>
-            </div>
-            <div class="industry-card">
-                <img src="assets/images/Renewables.jpeg" alt="Infrastructure Icon" class="industry-icon">
-                <span class="industry-name">Renewables</span>
-            </div>
-        </div>
-
-        <div class="text-center mt-5">
-            <a href="#" class="sector-agnostic-link">Our Sector-Agnostic Approach</a>
-        </div>
-    </div>
-</section> -->
-
-
-
-
-
-<!--  -->
-
-<section class="recognized-by-best-section py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5 text-section mb-4 mb-lg-0">
-                
-                <h2 class="our-services-title">Recognized by the best</h2>
-                <p class="recognized-description">
-                    Trusted by industry leaders and global experts, our partnerships reflect our commitment to excellence
-                    and innovation across every sector we serve.
-                </p>
-            </div>
-            <div class="col-lg-7 carousel-section">
-                <div class="logo-carousel">
-                    <div class="carousel-item-logo">
-                        <img src="assets/images/revolute.png" alt="Revolut Logo" class="img-fluid">
-                    </div>
-                    <div class="carousel-item-logo">
-                        <img src="assets/images/Chevron-Logo.png" alt="Chevron Logo" class="img-fluid">
-                    </div>
-                    <div class="carousel-item-logo">
-                        <img src="assets/images/Shell-Logo.png" alt="Shell Logo" class="img-fluid">
-                    </div>
-                    <div class="carousel-item-logo">
-                        <img src="assets/images/stripe-logo.png" alt="Stripe Logo" class="img-fluid">
-                    </div>
-                    </div>
-                <div class="carousel-dots d-flex justify-content-center mt-4">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="contact-us-section">
-    <div class="contact-container">
-        <h2 class="our-services-title">Get in Touch With Us</h2>
-        <p class="contact-subtitle">We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.</p>
-
-        <form class="contact-form" action="#" method="POST">
-            <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" placeholder="name@example.com" required>
-            </div>
-
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" rows="6" placeholder="Type your message here..." required></textarea>
-            </div>
-
-            <button type="submit" class="submit-button"><i class="fa fa-envelope-open" aria-hidden="true" style="color: #fff;"></i> Send Message</button>
-        </form>
-    </div>
-</section>
 
 <footer class="main-footer">
     <div class="container">
@@ -371,14 +1259,15 @@ Every campaign is driven by one guiding <strong>message: “Be A Better You.”<
                 <h4 class="footer-company-name mb-2">Uccareforall Initiative</h4>
                 <p class="footer-tagline mb-3">Strategic Advisory | Sector Agnostic | Results-Driven</p>
                 <p class="footer-description mb-4 mb-lg-0">
-                    Unlock the full potential of your business with our tailored corporate advisory services.
-                    From securing key partnerships to capital raising, we're committed to driving your success
-                    across Fintech, Oil and Gas, Real Estate, and Infrastructure.
+                    We collaborate with schools, corporate sponsors, and local government frameworks 
+                    to maximize our footprint. Partner with us to scale our next community intervention.
                 </p>
             </div>
              <div class="col-lg-4 footer-right-content d-flex justify-content-center justify-content-lg-end">
-                <button class=" footer-schedule-btn"><i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;" ></i> Donate</button>
-            </div> 
+                    <a href="./pages/donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2">
+                        <i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;"></i> Donate
+                    </a>
+                </div> 
 
         
         </div>
@@ -421,8 +1310,96 @@ Every campaign is driven by one guiding <strong>message: “Be A Better You.”<
     </div>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./assets/Js/script.js"></script> 
+
+ 
+   <script>
+    // ── Copyright year ──
+    document.getElementById('year').textContent = new Date().getFullYear();
+ 
+    // ── Flip cards: touch/click support ──
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+ 
+    // ── Impact ticker: count up on scroll into view ──
+    const tickerNums = document.querySelectorAll('.ticker-num[data-target]');
+    let tickerFired = false;
+ 
+    function animateTicker() {
+      tickerNums.forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const step = target / (duration / 16);
+        let current = 0;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(current).toLocaleString() + suffix;
+        }, 16);
+      });
+    }
+ 
+    const tickerStrip = document.querySelector('.ticker-strip');
+    const tickerObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !tickerFired) {
+        tickerFired = true;
+        animateTicker();
+        tickerObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    if (tickerStrip) tickerObserver.observe(tickerStrip);
+ 
+    // ── Contact form ──
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name    = document.getElementById('c-name').value.trim();
+      const email   = document.getElementById('c-email').value.trim();
+      const subject = document.getElementById('c-subject').value.trim();
+      const message = document.getElementById('c-message').value.trim();
+      const errEl   = document.getElementById('contact-error');
+ 
+      if (!name || !email || !subject || !message) {
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
+ 
+      // TODO: replace with EmailJS / Formspree / backend
+      const mailto = `mailto:info@Uccareforall.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+      window.location.href = mailto;
+    });
+ 
+    // ── Volunteer modal submit ──
+    function submitVolunteer() {
+      const name  = document.getElementById('vol-name').value.trim();
+      const email = document.getElementById('vol-email').value.trim();
+      const skill = document.getElementById('vol-skill').value;
+      const avail = document.getElementById('vol-avail').value;
+      const errEl = document.getElementById('vol-error');
+ 
+      if (!name || !email || !skill || !avail) {
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
+ 
+      const motivation = document.getElementById('vol-motivation').value.trim();
+ 
+      // TODO: replace with backend/Google Sheet endpoint
+      const mailto = `mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer Application — ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${document.getElementById('vol-phone').value}\nSkill: ${skill}\nAvailability: ${avail}\n\nMotivation:\n${motivation}`)}`;
+      window.open(mailto, '_blank');
+ 
+      document.getElementById('vol-form-wrap').style.display = 'none';
+      document.getElementById('vol-success').style.display = 'block';
+    }
+  </script>
+  
 </body>
 </body>
 </html>
