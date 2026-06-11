@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!document.getElementById('tier-grid')) return;
 
   /* ── TODO: Fill these in before going live ── */
-  const WHATSAPP_NUMBER = '+2348061453534'; /* international format, no + */
+  const WHATSAPP_NUMBER = '2348061453534'; /* international format, no + */
   const CONTACT_EMAIL   = 'info@uccareforall.com';
 
   let selectedAmount = null;
