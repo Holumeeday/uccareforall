@@ -1,21 +1,384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uccareforall initiative</title>
+  <title>Strategic Partnership — Uccareforall Initiative</title>
   <link rel="stylesheet" href="../assets/css/uccare.css">
-   <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+  <style>
+    /* ============================================================
+       PARTNER PAGE — LOCAL STYLES
+       ============================================================ */
+ 
+    /* ── HERO ── */
+    .partner-hero {
+      background: var(--ink);
+      padding: 6rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,114,49,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .partner-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229,0,0,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .partner-hero-content { position: relative; z-index: 1; }
+    .partner-hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.25rem;
+    }
+    .partner-hero-headline em { font-style: italic; color: var(--muted); }
+    .partner-hero-sub {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.8;
+      max-width: 520px;
+      margin-bottom: 2.75rem;
+    }
+    .partner-hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .partner-hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .partner-hero-chip i { color: var(--amber); font-size: 0.7rem; }
+ 
+    /* ── WHY PARTNER STRIP ── */
+    .why-strip {
+      background: var(--cream);
+      padding: 6rem 0;
+    }
+    .why-strip .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .why-strip .section-heading em { font-style: italic; color: var(--amber); }
+    .why-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(to right, var(--red), var(--orange), var(--amber));
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .why-card:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(26,18,8,0.09); border-color: transparent; }
+    .why-card:hover::before { opacity: 1; }
+    .why-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--red), var(--orange), var(--amber));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+    .why-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .why-body { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; }
+ 
+    /* ── PARTNERSHIP TIERS ── */
+    .tiers-section {
+      background: var(--white);
+      padding: 6rem 0;
+    }
+    .tiers-section .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .tiers-section .section-heading em { font-style: italic; color: var(--amber); }
+    .tier-card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      height: 100%;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .tier-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,18,8,0.1); }
+    .tier-card.featured {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 2px rgba(226,114,49,0.18);
+    }
+    .tier-header {
+      padding: 1.75rem 1.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .tier-card.featured .tier-header { background: var(--ink); border-color: var(--ink); }
+    .tier-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      background: rgba(226,114,49,0.12);
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+    .tier-card.featured .tier-badge { background: rgba(255,255,255,0.1); color: var(--muted); }
+    .tier-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+    .tier-card.featured .tier-name { color: var(--white); }
+    .tier-tagline { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+    .tier-card.featured .tier-tagline { color: rgba(255,255,255,0.5); }
+    .tier-body { padding: 1.75rem; }
+    .tier-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+    }
+    .tier-feature:last-child { margin-bottom: 0; }
+    .tier-feature i { color: var(--amber); font-size: 0.75rem; margin-top: 4px; flex-shrink: 0; }
+ 
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--cream);
+      padding: 6rem 0;
+    }
+    .form-section .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .form-section .section-heading em { font-style: italic; color: var(--amber); }
+ 
+    .partner-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .form-card-header {
+      background: var(--ink);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .form-card-header i { color: var(--amber); font-size: 1.1rem; }
+    .form-card-header span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .form-card-body { padding: 2.25rem; }
+ 
+    .p-form-section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .p-form-section-title i { color: var(--amber); font-size: 0.9rem; }
+    .p-form-section-num {
+      width: 24px; height: 24px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+ 
+    /* ── SIDEBAR ── */
+    .partner-sidebar {
+      position: sticky;
+      top: 90px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .sidebar-card-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .sidebar-card-header i { color: var(--amber); font-size: 0.9rem; }
+    .sidebar-card-header span { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+    .sidebar-card-body { padding: 1.5rem; }
+ 
+    .sidebar-stat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .sidebar-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .s-stat-icon {
+      width: 36px; height: 36px;
+      background: rgba(226,114,49,0.1);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .s-stat-icon i { color: var(--amber); font-size: 0.85rem; }
+    .s-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .s-stat-label { font-size: 0.72rem; color: var(--text-muted); }
+ 
+    .contact-quick {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .contact-quick:last-child { margin-bottom: 0; }
+    .contact-quick i { color: var(--amber); flex-shrink: 0; width: 14px; }
+    .contact-quick a { color: var(--text-muted); text-decoration: none; }
+    .contact-quick a:hover { color: var(--amber); }
+ 
+    /* ── PARTNER LOGOS (existing partners strip) ── */
+    .existing-partners {
+      background: var(--ink);
+      padding: 3.5rem 0;
+    }
+    .ep-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 2.25rem;
+    }
+    .ep-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+    }
+    .ep-logo-wrap {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .ep-logo-wrap:hover { background: rgba(226,114,49,0.08); border-color: rgba(226,114,49,0.2); }
+    .ep-logo-wrap img {
+      max-height: 48px;
+      max-width: 140px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.55;
+      transition: opacity 0.2s, filter 0.2s;
+    }
+    .ep-logo-wrap:hover img { opacity: 1; filter: none; }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 991px) {
+      .partner-sidebar { position: static; }
+    }
+    @media (max-width: 767px) {
+      .partner-hero { padding: 4rem 0 3.5rem; }
+      .why-strip, .tiers-section, .form-section { padding: 4.5rem 0; }
+      .form-card-body { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-
-    <!-- STICKY NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top position-relative">
+ 
+  <!-- ════════════════════ NAVBAR ════════════════════ -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top position-relative">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="../index.html">
         <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,346 +387,489 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../pages/about-us.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="../pages/projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="../pages/partner.html">Strategic Partnership</a></li>
-         
-          
+          <li class="nav-item"><a class="nav-link" href="./about-us.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="./projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" href="./partner.html">Strategic Partnership</a></li>
         </ul>
       </div>
       <div class="navbar-right d-none d-lg-block">
-        <a href="../pages/donate.html" class="btn btn-danger"><i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;" ></i> Donate</a>
+        <a href="./donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2" style="color:#fff;">
+          <i class="fa-solid fa-heart" style="color:#fff;"></i> Donate
+        </a>
       </div>
     </div>
   </nav>
-
-    <!-- PREMIUM PARTNER HERO -->
-    <div class="partner-hero text-white">
-        <div class="container py-3">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-7">
-                    <span class="badge text-uppercase px-3 py-2 mb-3 fw-bold shadow-sm" style="background-color: var(--brand-orange); letter-spacing: 0.5px;">Institutional Growth</span>
-                    <h1 class="display-4 fw-bold mb-3">Institutional Partnerships</h1>
-                    <p class="lead text-muted-light mb-0" style="color: #cbd5e1; max-width: 620px;">
-                        Co-brand initiatives, anchor funding structures, or share critical logistics frameworks to scale high-impact interventions across Africa.
-                    </p>
-                </div>
-            </div>
+ 
+ 
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <section class="partner-hero">
+    <div class="container partner-hero-content">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="eyebrow">Strategic Partnerships</span>
+          <h1 class="partner-hero-headline">
+            Build with us.<br><em>Scale for Africa.</em>
+          </h1>
+          <p class="partner-hero-sub">
+            Co-brand initiatives, anchor funding structures, and share critical logistics frameworks to scale high-impact community interventions across Africa. Every partnership we form is built on trust, transparency, and verified results.
+          </p>
+          <div class="partner-hero-chips">
+            <div class="partner-hero-chip"><i class="fa-solid fa-circle-check"></i> CSR Funding</div>
+            <div class="partner-hero-chip"><i class="fa-solid fa-circle-check"></i> Resource Sponsorship</div>
+            <div class="partner-hero-chip"><i class="fa-solid fa-circle-check"></i> Media & Advocacy</div>
+            <div class="partner-hero-chip"><i class="fa-solid fa-circle-check"></i> Co-execution</div>
+          </div>
         </div>
+      </div>
     </div>
-
-    <!-- MAIN INTERACTION WRAPPER -->
-    <div class="container my-5">
-        <div class="row g-4 lg-g-5">
-            
-            <!-- FORM HOUSING BLOCK -->
-            <div class="col-lg-8">
-                <div class="proposal-card p-4 p-md-5">
-                    <h2 class="fw-bold h3 text-dark mb-4">Partnership Registration Protocol</h2>
-                    
-                    <!-- Form Action placeholder configured for easy insertion of handlers later -->
-                    <form action="YOUR_EMAIL_HANDLER_URL_HERE" method="POST">
-                        
-                        <!-- SECTION 1: ENTITY IDENTITY -->
-                        <div class="mb-5">
-                            <h5 class="form-section-title mb-4">1. Entity Specifications</h5>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">Organization Legal Name</label>
-                                    <input type="text" name="organization_name" class="form-control" placeholder="e.g., Acme Foundation" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Industry / Sector Focus</label>
-                                    <select name="organization_sector" class="form-select" required>
-                                        <option value="" selected disabled>Select sector...</option>
-                                        <option value="Private Corporate">Private Corporate CSR</option>
-                                        <option value="International Grant Body">International Grant Body / Trust</option>
-                                        <option value="NGO / Civil Society">NGO / Civil Society / Non-Profit</option>
-                                        <option value="Government Frame">Government Framework / Agency</option>
-                                        <option value="High-Net-Worth Individual">High-Net-Worth Philanthropy</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 2: POINT OF CONTACT -->
-                        <div class="mb-5">
-                            <h5 class="form-section-title mb-4">2. Point of Contact Credentials</h5>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">Contact Full Name</label>
-                                    <input type="text" name="contact_name" class="form-control" placeholder="Jane Doe" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Professional Designation / Role</label>
-                                    <input type="text" name="contact_title" class="form-control" placeholder="e.g., CSR Director / Trustee" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Official Email Address</label>
-                                    <input type="email" name="contact_email" class="form-control" placeholder="j.doe@organization.com" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Direct Telephone Number</label>
-                                    <input type="tel" name="contact_phone" class="form-control" placeholder="+234..." required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SECTION 3: INTENT STRATEGY -->
-                        <div class="mb-4">
-                            <h5 class="form-section-title mb-4">3. Collaboration Directives</h5>
-                            <div class="row g-3">
-                                <div class="col-12">
-                                    <label class="form-label">Primary Partnership Intent</label>
-                                    <select name="partnership_intent" class="form-select" required>
-                                        <option value="" selected disabled>Select primary alignment...</option>
-                                        <option value="Corporate Social Responsibility Funding">Corporate Social Responsibility (CSR) Anchor Funding</option>
-                                        <option value="Resource/Equipment Sponsorship">Resource / Equipment / Material Supply Sponsorship</option>
-                                        <option value="Strategic Advisory/Co-execution">Strategic Advisory / Project Co-execution Framework</option>
-                                        <option value="Media/Publicity Partnership">Media / Advocacy / Publicity Partnership</option>
-                                    </select>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">Strategic Narrative / Scope of Objectives</label>
-                                    <textarea name="partnership_scope" class="form-control" rows="5" placeholder="Outline your organization's vision, intended resource allocations, or targeted geographic focus..." required></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- SUBMIT BLOCK -->
-                        <div class="mt-5 d-flex justify-content-center">
-                            <button type="submit" class="btn rounded-pill  fw-bold shadow-sm submit-butt">
-                                Submit Formal Partnership Proposal
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- SIDEBAR TRUST ASSETS -->
-            <div class="col-lg-4">
-                <div class="trust-sidebar p-4 p-md-4">
-                    <h4 class="fw-bold text-dark h5 mb-4">Strategic Footprint</h4>
-                    
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="trust-badge-icon me-3"><i class="fa-solid fa-chart-line"></i></div>
-                        <div>
-                            <h6 class="fw-bold text-dark mb-1">Results-Driven Design</h6>
-                            <p class="small text-muted mb-0">Every project tracking pipeline features rigid metric reporting and structured execution blueprints.</p>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-start mb-4">
-                        <div class="trust-badge-icon me-3"><i class="fa-solid fa-handshake-angle"></i></div>
-                        <div>
-                            <h6 class="fw-bold text-dark mb-1">Sector Agnostic Delivery</h6>
-                            <p class="small text-muted mb-0">We interface directly with corporate sponsors, school groups, and regulatory bodies fluidly.</p>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-start">
-                        <div class="trust-badge-icon me-3"><i class="fa-solid fa-scale-balanced"></i></div>
-                        <div>
-                            <h6 class="fw-bold text-dark mb-1">Absolute Compliance</h6>
-                            <p class="small text-muted mb-0">Transparent fiscal controls, structural administrative auditing, and verified deployment logs.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+  </section>
+ 
+  <!-- ════════════════════ EXISTING PARTNERS STRIP ════════════════════ -->
+  <div class="existing-partners">
+    <div class="container">
+      <p class="ep-label">Organisations Already Walking With Us</p>
+      <div class="ep-logos">
+        <div class="ep-logo-wrap">
+          <img src="../assets/images/Hamiever.jpg" alt="Hamieverse Foundation">
         </div>
+        <!-- Add more partner logos here as they come on board -->
+      </div>
     </div>
-
-    <!-- DYNAMIC VOLUNTEER POPUP MODAL HOUSING UNIT -->
-    <div class="modal fade" id="volunteerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 18px; overflow: hidden;">
-                <div class="modal-header volunteer-modal-header border-0 py-3 px-4">
-                    <div class="d-flex align-items-center">
-                        <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                            <i class="fa-solid fa-users-viewfinder fs-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="modal-title fw-bold h5 mb-0" id="volunteerModalLabel">Volunteer Network Enrollment</h4>
-                            <small style="color: #cbd5e1; font-size: 0.78rem;">Deploy your expertise inside the field</small>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-submit="modal" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5 bg-white">
-                    <form action="YOUR_EMAIL_HANDLER_URL_HERE" method="POST">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" name="volunteer_name" class="form-control" placeholder="John Doe" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" name="volunteer_email" class="form-control" placeholder="john@example.com" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Core Competency / Skill Profession</label>
-                                <select name="volunteer_skill" class="form-select" required>
-                                    <option value="" selected disabled>Select primary profile...</option>
-                                    <option value="Medical Specialist / Clinician">Medical Specialist / Nurse / Doctor</option>
-                                    <option value="Educator / Teacher">Educator / Instructional Lead</option>
-                                    <option value="Media Creator / Creative Personnel">Media Creator / Photographer / Videographer</option>
-                                    <option value="Logistics Coordinator">Logistics Specialist / General Support</option>
-                                    <option value="Student Advocate">Student / Enthusiastic Advocate</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">General Availability Allocation</label>
-                                <select name="volunteer_availability" class="form-select" required>
-                                    <option value="" selected disabled>Select availability footprint...</option>
-                                    <option value="Weekends Only">Weekends Only</option>
-                                    <option value="Weekday Deployments">Weekday Deployments</option>
-                                    <option value="Flexible / On-Call Notice">Flexible / On-Call Notice</option>
-                                    <option value="Remote Digital Support">Remote / Digital Asset Support Only</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Statement of Motivation</label>
-                                <textarea name="volunteer_motivation" class="form-control" rows="4" placeholder="Briefly articulate your motivation for joining our field deployments and what drives your alignment..." required></textarea>
-                            </div>
-                            <div class="col-12 mt-4">
-                                <button type="submit" class="btn btn-dark w-100 py-3 fw-bold rounded-pill" style="letter-spacing: 0.5px;">
-                                    Submit Application & Join Database
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  </div>
+ 
+ 
+  <!-- ════════════════════ WHY PARTNER ════════════════════ -->
+  <section class="why-strip">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">The Case for Partnership</span>
+          <h2 class="section-heading">Why partner <em>with us?</em></h2>
         </div>
+        <div class="col-lg-6 offset-lg-1">
+          <p class="section-intro">Six years of field-verified impact, a 1M+ organic reach, and a network spanning 25 states — our partners don't just lend their name, they multiply their impact.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card">
+            <div class="why-icon">📊</div>
+            <div class="why-title">Results You Can Report</div>
+            <p class="why-body">Every programme we run produces structured metric reports. Your CSR team gets verified numbers, images, and community testimony — not promises.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card">
+            <div class="why-icon">🌍</div>
+            <div class="why-title">Pan-African Footprint</div>
+            <p class="why-body">From Ebute Metta to across West Africa, our field teams and volunteer network are operational. Your brand reaches communities that matter.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card">
+            <div class="why-icon">📢</div>
+            <div class="why-title">1M+ Organic Reach</div>
+            <p class="why-body">Every campaign is documented and shared across Instagram, Facebook, TikTok, and YouTube. Partners gain authentic, audience-driven visibility.</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="why-card">
+            <div class="why-icon">🔒</div>
+            <div class="why-title">Full Compliance</div>
+            <p class="why-body">Transparent fiscal controls, administrative auditing, and deployment logs — every naira and resource is tracked end-to-end.</p>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- VOLUNTEER POPUP MODAL HOUSING TEMPLATE (Submits via standard post format) -->
-    <div class="modal fade" id="volunteerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 18px; overflow: hidden;">
-                <div class="modal-header volunteer-modal-header border-0 py-3 px-4">
-                    <div class="d-flex align-items-center">
-                        <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
-                            <i class="fa-solid fa-users-viewfinder fs-5"></i>
-                        </div>
-                        <div>
-                            <h4 class="modal-title fw-bold h5 mb-0" id="volunteerModalLabel">Volunteer Network Enrollment</h4>
-                            <small style="color: #cbd5e1; font-size: 0.78rem;">Deploy your expertise inside the field</small>
-                        </div>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5 bg-white">
-                    <form action="YOUR_EMAIL_HANDLER_URL_HERE" method="POST">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label class="form-label">Full Name</label>
-                                <input type="text" name="volunteer_name" class="form-control" placeholder="John Doe" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" name="volunteer_email" class="form-control" placeholder="john@example.com" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Core Competency / Skill Profession</label>
-                                <select name="volunteer_skill" class="form-select" required>
-                                    <option value="" selected disabled>Select primary profile...</option>
-                                    <option value="Medical Specialist / Clinician">Medical Specialist / Nurse / Doctor</option>
-                                    <option value="Educator / Teacher">Educator / Instructional Lead</option>
-                                    <option value="Media Creator / Creative Personnel">Media Creator / Photographer / Videographer</option>
-                                    <option value="Logistics Coordinator">Logistics Specialist / General Support</option>
-                                    <option value="Student Advocate">Student / Enthusiastic Advocate</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">General Availability Allocation</label>
-                                <select name="volunteer_availability" class="form-select" required>
-                                    <option value="" selected disabled>Select availability footprint...</option>
-                                    <option value="Weekends Only">Weekends Only</option>
-                                    <option value="Weekday Deployments">Weekday Deployments</option>
-                                    <option value="Flexible / On-Call Notice">Flexible / On-Call Notice</option>
-                                    <option value="Remote Digital Support">Remote / Digital Asset Support Only</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Statement of Motivation</label>
-                                <textarea name="volunteer_motivation" class="form-control" rows="4" placeholder="Briefly articulate your motivation for joining our field deployments and what drives your alignment..." required></textarea>
-                            </div>
-                            <div class="col-12 mt-4">
-                                <button type="submit" class="btn btn-dark w-100 py-3 fw-bold rounded-pill" style="letter-spacing: 0.5px;">
-                                    Submit Application & Join Database
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+  </section>
+ 
+ 
+  <!-- ════════════════════ PARTNERSHIP TIERS ════════════════════ -->
+  <section class="tiers-section">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">How We Collaborate</span>
+          <h2 class="section-heading">Partnership <em>models.</em></h2>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <p class="section-intro">Choose the partnership structure that fits your organisation's mandate — or bring your own idea and we'll design a framework together.</p>
+        </div>
+      </div>
+      <div class="row g-4">
+ 
+        <div class="col-md-6 col-lg-3">
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-badge">CSR Anchor</div>
+              <div class="tier-name">Funding Partner</div>
+              <p class="tier-tagline">Anchor a campaign, programme, or project with structured funding.</p>
             </div>
-        </div>
-    </div>
-
-    <!-- FOOTER MODULE -->
-    <footer class="main-footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 footer-left-content">
-                    <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="">
-                    <h4 class="footer-company-name mb-2">Uccareforall Initiative</h4>
-                    <p class="footer-tagline mb-3">Strategic Advisory | Sector Agnostic | Results-Driven</p>
-                    <p class="footer-description mb-4 mb-lg-0">
-                         We collaborate with schools, corporate sponsors, and local government frameworks 
-                    to maximize our footprint. Partner with us to scale our next community intervention.
-                    </p>
-                </div>
-                <div class="col-lg-4 footer-right-content d-flex justify-content-center justify-content-lg-end">
-                    <a href="./donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2">
-                        <i class="fa fa-credit-card" aria-hidden="true" style="color: #fff;"></i> Donate
-                    </a>
-                </div> 
+            <div class="tier-body">
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Named brand placement on campaign materials</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Impact report delivered post-execution</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Social media co-coverage across our channels</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Certificate of partnership issued</div>
             </div>
+          </div>
         </div>
-    </footer>
-
-    <div class="sub-footer">
-        <div class="container">
-            <div class="row align-items-center py-4">
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <p class="footer-contact-info mb-1 fw-semibold text-white">Seventh Ave, 20th Floor</p>
-                    <p class="footer-contact-info mb-0">Ebute Metta, Lagos</p>
-                    <p class="footer-contact-info mb-0">Nigeria</p>
-                </div>
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <p class="footer-contact-info mb-1 fw-semibold text-white">+44 7932 485377</p>
-                    <p class="info-value">+234 815 930 1168</p>
-                    <p class="footer-contact-info mb-0">E: info@Uccareforall.com</p>
-                </div>
-                <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
-                    <div class="social-icons d-flex gap-1">
-                        <a href="https://www.instagram.com/uccareforall/" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-facebook-f"></i></a>
-                        <!-- <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-linkedin"></i></a>
-                        <a href="#" class="social-icon-link"><i style="color: #f9671f;" class="fa-brands fa-x-twitter"></i></a>  -->
-                    </div>
-                </div>
+ 
+        <div class="col-md-6 col-lg-3">
+          <div class="tier-card featured">
+            <div class="tier-header">
+              <div class="tier-badge">Most Popular</div>
+              <div class="tier-name">Resource Partner</div>
+              <p class="tier-tagline">Supply equipment, logistics, materials, or in-kind support.</p>
             </div>
+            <div class="tier-body">
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Brand visible at every field deployment</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Documentary-style video coverage produced</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Dedicated post on all channels at deployment</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Quarterly partnership review call</div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <div class="copyright-bar">
-        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
-            <p class="mb-0">&copy; <span id="year"></span> Uccareforall Initiative</p>
-            <p class="mb-0">
-                <a href="#" class="copyright-link me-3">Terms & Conditions</a>
-                <a href="#" class="copyright-link">Privacy Policy</a>
-            </p>
+ 
+        <div class="col-md-6 col-lg-3">
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-badge">Strategic</div>
+              <div class="tier-name">Co-execution</div>
+              <p class="tier-tagline">Run a joint programme — your capacity, our community infrastructure.</p>
+            </div>
+            <div class="tier-body">
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Co-branded programme design and delivery</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Joint beneficiary database and tracking</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Shared media content and documentation</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> MOU / formal partnership agreement</div>
+            </div>
+          </div>
         </div>
+ 
+        <div class="col-md-6 col-lg-3">
+          <div class="tier-card">
+            <div class="tier-header">
+              <div class="tier-badge">Advocacy</div>
+              <div class="tier-name">Media Partner</div>
+              <p class="tier-tagline">Amplify our work through your platform, publication, or audience.</p>
+            </div>
+            <div class="tier-body">
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Cross-promotion across both audiences</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Access to exclusive field footage and stories</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Co-authored campaign narratives</div>
+              <div class="tier-feature"><i class="fa-solid fa-check"></i> Brand logo on our website partners section</div>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
     </div>
-
-    <!-- Bootstrap 5 JavaScript Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('year').innerText = new Date().getFullYear();
-    </script>
+  </section>
+ 
+ 
+  <!-- ════════════════════ FORM SECTION ════════════════════ -->
+  <section class="form-section" id="register">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">Ready to Begin</span>
+          <h2 class="section-heading">Submit a <em>proposal.</em></h2>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <p class="section-intro">Fill out the form below and our team will respond within 48 hours to discuss next steps and design a partnership framework that works for both parties.</p>
+        </div>
+      </div>
+ 
+      <div class="row g-4 align-items-start">
+ 
+        <!-- FORM -->
+        <div class="col-lg-8">
+          <div class="partner-form-card">
+            <div class="form-card-header">
+              <i class="fa-solid fa-file-signature"></i>
+              <span>Partnership Registration</span>
+            </div>
+            <div class="form-card-body">
+              <form id="partner-form" novalidate>
+ 
+                <!-- Section 1 -->
+                <div class="p-form-section-title">
+                  <span class="p-form-section-num">1</span>
+                  <i class="fa-solid fa-building"></i> Entity Details
+                </div>
+                <div class="form-row mb-4">
+                  <div class="form-field">
+                    <label for="p-org-name">Organisation Legal Name <span style="color:var(--red)">*</span></label>
+                    <input type="text" id="p-org-name" name="organization_name" placeholder="e.g., Acme Foundation" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="p-sector">Industry / Sector <span style="color:var(--red)">*</span></label>
+                    <select id="p-sector" name="organization_sector" required style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:0.78rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);background:var(--white);outline:none;appearance:none;transition:border-color 0.2s,box-shadow 0.2s;">
+                      <option value="" disabled selected>Select sector…</option>
+                      <option>Private Corporate / CSR</option>
+                      <option>International Grant Body / Trust</option>
+                      <option>NGO / Civil Society / Non-Profit</option>
+                      <option>Government Framework / Agency</option>
+                      <option>High-Net-Worth Philanthropy</option>
+                      <option>Media / Technology</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+ 
+                <!-- Section 2 -->
+                <div class="p-form-section-title">
+                  <span class="p-form-section-num">2</span>
+                  <i class="fa-solid fa-user-tie"></i> Point of Contact
+                </div>
+                <div class="form-row mb-4">
+                  <div class="form-field">
+                    <label for="p-contact-name">Full Name <span style="color:var(--red)">*</span></label>
+                    <input type="text" id="p-contact-name" name="contact_name" placeholder="Jane Doe" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="p-contact-role">Role / Designation <span style="color:var(--red)">*</span></label>
+                    <input type="text" id="p-contact-role" name="contact_title" placeholder="e.g., CSR Director" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="p-contact-email">Official Email <span style="color:var(--red)">*</span></label>
+                    <input type="email" id="p-contact-email" name="contact_email" placeholder="name@organisation.com" required>
+                  </div>
+                  <div class="form-field">
+                    <label for="p-contact-phone">Phone Number <span style="color:var(--red)">*</span></label>
+                    <input type="tel" id="p-contact-phone" name="contact_phone" placeholder="+234…" required>
+                  </div>
+                </div>
+ 
+                <!-- Section 3 -->
+                <div class="p-form-section-title">
+                  <span class="p-form-section-num">3</span>
+                  <i class="fa-solid fa-bullseye"></i> Partnership Intent
+                </div>
+                <div class="form-field mb-3">
+                  <label for="p-intent">Primary Partnership Model <span style="color:var(--red)">*</span></label>
+                  <select id="p-intent" name="partnership_intent" required style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:0.78rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);background:var(--white);outline:none;appearance:none;transition:border-color 0.2s,box-shadow 0.2s;">
+                    <option value="" disabled selected>Select your partnership model…</option>
+                    <option>CSR Anchor Funding</option>
+                    <option>Resource / Equipment / Material Supply</option>
+                    <option>Strategic Co-execution</option>
+                    <option>Media / Advocacy Partnership</option>
+                    <option>Open to discussion</option>
+                  </select>
+                </div>
+                <div class="form-field mb-4">
+                  <label for="p-scope">Strategic Narrative <span style="color:var(--red)">*</span></label>
+                  <textarea id="p-scope" name="partnership_scope" placeholder="Outline your organisation's vision, intended resource allocations, or geographic focus…" required></textarea>
+                </div>
+ 
+                <div id="partner-form-error" style="display:none;color:var(--red);font-size:0.8rem;margin-bottom:0.75rem;">Please fill in all required fields.</div>
+                <button type="submit" class="btn-send">
+                  <i class="fa-solid fa-paper-plane"></i> Submit Partnership Proposal
+                </button>
+ 
+              </form>
+            </div>
+          </div>
+        </div>
+ 
+        <!-- SIDEBAR -->
+        <div class="col-lg-4">
+          <div class="partner-sidebar">
+ 
+            <!-- Impact Stats -->
+            <div class="sidebar-card">
+              <div class="sidebar-card-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Our Track Record</span>
+              </div>
+              <div class="sidebar-card-body">
+                <div class="sidebar-stat">
+                  <div class="s-stat-icon"><i class="fa-solid fa-people-group"></i></div>
+                  <div>
+                    <div class="s-stat-num">2,000+</div>
+                    <div class="s-stat-label">People with clean water access</div>
+                  </div>
+                </div>
+                <div class="sidebar-stat">
+                  <div class="s-stat-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                  <div>
+                    <div class="s-stat-num">1,000+</div>
+                    <div class="s-stat-label">Free health consultations</div>
+                  </div>
+                </div>
+                <div class="sidebar-stat">
+                  <div class="s-stat-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div>
+                    <div class="s-stat-num">25 States</div>
+                    <div class="s-stat-label">Campaign reach across Nigeria</div>
+                  </div>
+                </div>
+                <div class="sidebar-stat">
+                  <div class="s-stat-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                  <div>
+                    <div class="s-stat-num">1M+</div>
+                    <div class="s-stat-label">Organic social media reach</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+            <!-- Direct Contact -->
+            <div class="sidebar-card">
+              <div class="sidebar-card-header">
+                <i class="fa-solid fa-phone"></i>
+                <span>Prefer to call first?</span>
+              </div>
+              <div class="sidebar-card-body">
+                <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">Our team is reachable directly if you'd rather talk through partnership options before submitting a formal proposal.</p>
+                <div class="contact-quick"><i class="fa-solid fa-phone"></i> <a href="tel:+447932485377">+44 7932 485377</a></div>
+                <div class="contact-quick"><i class="fa-solid fa-phone"></i> <a href="tel:+2348159301168">+234 815 930 1168</a></div>
+                <div class="contact-quick"><i class="fa-solid fa-envelope"></i> <a href="mailto:info@Uccareforall.com">info@Uccareforall.com</a></div>
+                <div style="margin-top:1.25rem;padding-top:1.1rem;border-top:1px solid var(--border);">
+                  <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:0.65rem;">Response time</p>
+                  <div style="display:flex;align-items:center;gap:7px;font-size:0.83rem;font-weight:500;color:var(--ink);">
+                    <i class="fa-solid fa-clock" style="color:var(--amber);"></i> Within 48 hours
+                  </div>
+                </div>
+              </div>
+            </div>
+ 
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+ 
+  <!-- ════════════════════ VOLUNTEER MODAL ════════════════════ -->
+  <div class="modal fade" id="volunteerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border-radius:20px;border:none;overflow:hidden;">
+        <div class="modal-header-band">
+          <h5>Volunteer Network Enrollment</h5>
+          <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body-inner">
+          <div class="vol-row">
+            <div class="vol-field">
+              <label>Full Name</label>
+              <input type="text" placeholder="John Doe">
+            </div>
+            <div class="vol-field">
+              <label>Email Address</label>
+              <input type="email" placeholder="john@example.com">
+            </div>
+          </div>
+          <div class="vol-row">
+            <div class="vol-field">
+              <label>Core Skill / Profession</label>
+              <select style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:0.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);background:var(--white);outline:none;appearance:none;">
+                <option disabled selected>Select primary profile…</option>
+                <option>Medical Specialist / Nurse / Doctor</option>
+                <option>Educator / Instructional Lead</option>
+                <option>Media Creator / Photographer / Videographer</option>
+                <option>Logistics Specialist / General Support</option>
+                <option>Student / Enthusiastic Advocate</option>
+              </select>
+            </div>
+            <div class="vol-field">
+              <label>Availability</label>
+              <select style="width:100%;border:1.5px solid var(--border);border-radius:10px;padding:0.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--ink);background:var(--white);outline:none;appearance:none;">
+                <option disabled selected>Select availability…</option>
+                <option>Weekends Only</option>
+                <option>Weekday Deployments</option>
+                <option>Flexible / On-Call</option>
+                <option>Remote / Digital Only</option>
+              </select>
+            </div>
+          </div>
+          <div class="vol-field">
+            <label>Statement of Motivation</label>
+            <textarea placeholder="Briefly describe your motivation for joining our field deployments…"></textarea>
+          </div>
+          <button class="btn-vol-submit">
+            <i class="fa-solid fa-user-plus"></i> Submit & Join Volunteer Database
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8 footer-left-content">
+          <img src="../assets/images/uc-logo.png" style="width:30%;" alt="Uccareforall">
+          <h4 class="footer-company-name mb-2">Uccareforall Initiative</h4>
+          <p class="footer-tagline mb-3">Strategic Advisory | Sector Agnostic | Results-Driven</p>
+          <p class="footer-description mb-4 mb-lg-0">We collaborate with schools, corporate sponsors, and local government frameworks to maximise our footprint. Partner with us to scale our next community intervention.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+  <div class="sub-footer">
+    <div class="container">
+      <div class="row align-items-center py-4">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <p class="footer-contact-info mb-1 fw-semibold text-white">Seventh Ave, 20th Floor</p>
+          <p class="footer-contact-info mb-0">Ebute Metta, Lagos, Nigeria</p>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0">
+          <p class="footer-contact-info mb-1 fw-semibold text-white">+44 7932 485377</p>
+          <p class="footer-contact-info mb-0">+234 815 930 1168</p>
+          <p class="footer-contact-info mb-0">info@Uccareforall.com</p>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
+          <div class="social-icons d-flex gap-1">
+            <a href="https://www.instagram.com/uccareforall/" class="social-icon-link"><i style="color:#f9671f;" class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon-link"><i style="color:#f9671f;" class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="copyright-bar">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
+      <p class="mb-0">&copy; <span id="year"></span> Uccareforall Initiative</p>
+      <p class="mb-0">
+        <a href="#" class="copyright-link me-3">Terms &amp; Conditions</a>
+        <a href="#" class="copyright-link">Privacy Policy</a>
+      </p>
+    </div>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+ 
+    // Partner form basic validation
+    const pForm = document.getElementById('partner-form');
+    if (pForm) {
+      pForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const required = pForm.querySelectorAll('[required]');
+        let valid = true;
+        required.forEach(el => { if (!el.value.trim()) { valid = false; el.style.borderColor = 'var(--red)'; } else { el.style.borderColor = ''; } });
+        const errEl = document.getElementById('partner-form-error');
+        if (!valid) { errEl.style.display = 'block'; return; }
+        errEl.style.display = 'none';
+        // TODO: wire up to FormSubmit / EmailJS / backend
+        alert('Thank you! We will be in touch within 48 hours.');
+        pForm.reset();
+      });
+    }
+ 
+    // Select focus styling
+    document.querySelectorAll('select').forEach(sel => {
+      sel.addEventListener('focus', () => { sel.style.borderColor = 'var(--amber)'; sel.style.boxShadow = '0 0 0 3px rgba(226,114,49,0.12)'; });
+      sel.addEventListener('blur',  () => { sel.style.borderColor = ''; sel.style.boxShadow = ''; });
+    });
+  </script>
 </body>
 </html>
+ 

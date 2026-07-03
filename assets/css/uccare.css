@@ -747,3 +747,46 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
   .lightbox-prev { left: 0.5rem; }
   .lightbox-next { right: 0.5rem; }
 }
+
+
+
+<!-- ════════════════════
+     PARTNERS CSS
+════════════════════ --
+
+/* ============================================================
+   PARTNERS SECTION
+   ============================================================ */
+.partners-section { background: var(--white); padding: 7rem 0; border-top: 1px solid var(--border); }
+.partners-section .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 600; color: var(--ink); line-height: 1.15; }
+.partners-section .section-heading em { font-style: italic; color: var(--amber); }
+ 
+.partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+ 
+.partner-card { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 2.25rem; display: flex; flex-direction: column; gap: 1.25rem; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s; position: relative; overflow: hidden; }
+.partner-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, var(--red), var(--orange), var(--amber)); opacity: 0; transition: opacity 0.22s; }
+.partner-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(26,18,8,0.09); border-color: transparent; }
+.partner-card:hover::before { opacity: 1; }
+ 
+.partner-logo-wrap { width: 100%; background: var(--white); border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); min-height: 100px; }
+.partner-logo { max-height: 64px; max-width: 100%; object-fit: contain; }
+ 
+.partner-tag { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.35rem; }
+.partner-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+.partner-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.75; margin: 0; }
+.partner-since { font-size: 0.72rem; color: rgba(26,18,8,0.3); letter-spacing: 0.06em; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+ 
+/* CTA card */
+.partner-cta-card { background: var(--ink); border-color: var(--ink); justify-content: center; align-items: center; text-align: center; min-height: 280px; }
+.partner-cta-card::before { background: linear-gradient(to right, var(--red), var(--orange), var(--amber)); opacity: 1; }
+.partner-cta-inner { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.partner-cta-icon { font-size: 2.5rem; line-height: 1; filter: drop-shadow(0 0 20px rgba(226,114,49,0.35)); }
+.partner-cta-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--white); }
+.partner-cta-body { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 240px; }
+.btn-partner-cta { display: inline-flex; align-items: center; gap: 8px; padding: 0.65rem 1.5rem; background: linear-gradient(135deg, var(--red), var(--orange)); color: var(--white); border-radius: 50px; font-size: 0.8rem; font-weight: 500; text-decoration: none; margin-top: 0.5rem; transition: opacity 0.2s, transform 0.15s; }
+.btn-partner-cta:hover { opacity: 0.88; transform: translateY(-2px); color: var(--white); }
+ 
+@media (max-width: 767px) {
+  .partners-section { padding: 4.5rem 0; }
+  .partners-grid { grid-template-columns: 1fr; }
+}
