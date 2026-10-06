@@ -15,7 +15,7 @@
    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top position-relative">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo">
+        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo" loading="lazy" decoding="async">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,6 +44,9 @@
     <div class="container hero-content">
       <div class="hero-tag-pill" id="project-tag"><i class="fa-solid fa-tag"></i> Campaign</div>
       <h1 class="detail-headline" id="project-title">Loading...</h1>
+      <button class="btn-cta-primary mt-4" type="button" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+        <i class="fa-solid fa-user-plus"></i> Volunteer for this Programme
+      </button>
     </div>
   </div>
  
@@ -163,7 +166,7 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="">
+          <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="" loading="lazy" decoding="async">
           <p class="footer-org-name">Uccareforall Initiative</p>
           <p class="footer-tagline">Education · Empowerment · Excellence</p>
           <p class="footer-desc">We collaborate with schools, corporate sponsors, and local government frameworks to maximise our footprint across Nigeria and Africa.</p>
@@ -214,7 +217,7 @@
   <div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnBg(event)">
     <button class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
     <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="Gallery photo">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Gallery photo" loading="lazy" decoding="async">
     <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)"><i class="fa-solid fa-chevron-right"></i></button>
     <div class="lightbox-counter" id="lightbox-counter"></div>
   </div>
@@ -229,19 +232,57 @@
         </div>
         <div class="modal-body-inner">
           <div id="vol-form-wrap">
-            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.75rem;">We need passionate people on the ground — doctors, teachers, photographers, students. Tell us about yourself.</p>
+            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.75rem;">Help us coordinate volunteers across Lagos. Tell us where you are based, what you can contribute, and when you are available.</p>
             <div class="vol-row">
               <div class="vol-field"><label>Full Name *</label><input type="text" id="vol-name" placeholder="Your full name"></div>
               <div class="vol-field"><label>Email *</label><input type="email" id="vol-email" placeholder="your@email.com"></div>
             </div>
             <div class="vol-row">
-              <div class="vol-field"><label>Phone</label><input type="tel" id="vol-phone" placeholder="+234..."></div>
+              <div class="vol-field"><label>Phone / WhatsApp *</label><input type="tel" id="vol-phone" placeholder="+234..."></div>
               <div class="vol-field">
-                <label>Skill / Profession *</label>
+                <label>Local Government Area *</label>
+                <select id="vol-lga">
+                  <option value="" disabled selected>Select your LGA</option>
+                  <option>Agege</option>
+                  <option>Ajeromi-Ifelodun</option>
+                  <option>Alimosho</option>
+                  <option>Amuwo-Odofin</option>
+                  <option>Apapa</option>
+                  <option>Badagry</option>
+                  <option>Epe</option>
+                  <option>Eti-Osa</option>
+                  <option>Ibeju-Lekki</option>
+                  <option>Ifako-Ijaiye</option>
+                  <option>Ikeja</option>
+                  <option>Ikorodu</option>
+                  <option>Kosofe</option>
+                  <option>Lagos Island</option>
+                  <option>Lagos Mainland</option>
+                  <option>Mushin</option>
+                  <option>Oshodi-Isolo</option>
+                  <option>Shomolu</option>
+                  <option>Surulere</option>
+                  <option>Ojo</option>
+                </select>
+              </div>
+            </div>
+            <div class="vol-row">
+              <div class="vol-field">
+                <label>State *</label>
+                <select id="vol-state">
+                  <option value="" disabled selected>Select your state</option>
+                  <option>Lagos</option>
+                  <option>Other Nigerian state</option>
+                  <option>Outside Nigeria</option>
+                </select>
+              </div>
+              <div class="vol-field">
+                <label>Preferred Volunteer Role *</label>
                 <select id="vol-skill">
-                  <option value="" disabled selected>Select your background</option>
-                  <option>Medical Doctor / Nurse / Health Worker</option>
-                  <option>Teacher / Educator</option>
+                  <option value="" disabled selected>Select a role</option>
+                  <option>Community Mobilisation</option>
+                  <option>Environmental Research / Data Collection</option>
+                  <option>Public Awareness / Advocacy</option>
                   <option>Photographer / Videographer</option>
                   <option>Digital Marketer / Social Media</option>
                   <option>Student</option>
@@ -260,7 +301,8 @@
                 <option>Flexible — notify me when needed</option>
               </select>
             </div>
-            <div class="vol-field"><label>Why do you want to volunteer?</label><textarea id="vol-motivation" placeholder="Tell us what drives you..."></textarea></div>
+            <div class="vol-field"><label>Relevant experience or skills</label><textarea id="vol-experience" placeholder="Have you done community work, research, advocacy, data collection, or environmental work before?"></textarea></div>
+            <div class="vol-field"><label>Why do you want to volunteer? *</label><textarea id="vol-motivation" placeholder="Tell us what drives you..."></textarea></div>
             <div id="vol-error" style="display:none;color:var(--red);font-size:0.8rem;margin-bottom:0.75rem;">Please fill in all required fields.</div>
             <button class="btn-vol-submit" onclick="submitVolunteer()"><i class="fa-solid fa-user-plus"></i> Submit Application</button>
           </div>
@@ -298,6 +340,23 @@
         location: "Ebute Metta, Lagos", status: "Ongoing Deployment", statusType: "active", channels: "Healthcare Relief Program",
         stats: [{ value: "850+", label: "Consultations Issued" }, { value: "100% Free", label: "Prescription Distribution" }, { value: "20", label: "On-Field Medics" }],
         gallery: ["../assets/images/uc-medical/check-up.png","../assets/images/uc-medical/1.1.jpeg","../assets/images/uc-medical/1.jpeg","../assets/images/uc-medical/2.jpeg","../assets/images/uc-medical/3.jpeg","../assets/images/uc-medical/4.jpeg","../assets/images/uc-medical/5.jpeg","../assets/images/uc-medical/8.jpeg","../assets/images/uc-medical/10.jpeg","../assets/images/uc-medical/hero.jpeg","../assets/images/uc-medical/med-about.jpeg","../assets/images/uc-medical/med-about2.jpg","../assets/images/uc-medical/med-about4.jpg"]
+      },
+      "lagos-pollution": {
+        title: "",
+        tag: "Environmental Research",
+        heroImage: "../assets/images/rest.png",
+        lead: "A volunteer-led programme to document environmental pollution concerns across all 20 Local Government Areas of Lagos State and turn field evidence into practical public awareness.",
+        body: `<p>The Lagos 20-LGA Environmental Pollution Volunteer Research &amp; Awareness Programme is designed to build a clearer community-level picture of pollution across Lagos State. Volunteers will support structured observation, community conversations, and the collection of locally relevant information on environmental concerns affecting residents.</p><p>The programme will pair this research with accessible awareness activities, helping communities understand pollution risks, identify responsible everyday actions, and communicate priority concerns to relevant stakeholders. As the field programme develops, its findings will provide a practical foundation for targeted advocacy and future environmental interventions.</p>`,
+        location: "All 20 LGAs, Lagos State",
+        status: "Active / Ongoing",
+        statusType: "active",
+        channels: "Volunteer Research & Public Awareness",
+        stats: [
+          { value: "Pending", label: "Volunteers Recruited" },
+          { value: "Pending", label: "LGAs Covered" },
+          { value: "Ongoing", label: "Research & Awareness" }
+        ],
+        gallery: ["../assets/images/rest.png"]
       },
       "tech-accelerator": {
         title: "Media & Tech Youth Accelerator",
@@ -380,10 +439,11 @@
     function copyLink(e) { e.preventDefault(); navigator.clipboard.writeText(window.location.href).then(()=>{ const b=e.currentTarget; b.innerHTML='<i class="fa-solid fa-check" style="color:#1a7a4a;"></i> Copied!'; setTimeout(()=>{ b.innerHTML='<i class="fa-solid fa-link"></i> Copy Link'; },2000); }); }
  
     function submitVolunteer() {
-      const name=document.getElementById('vol-name').value.trim(), email=document.getElementById('vol-email').value.trim(), skill=document.getElementById('vol-skill').value, avail=document.getElementById('vol-avail').value, err=document.getElementById('vol-error');
-      if(!name||!email||!skill||!avail){err.style.display='block';return;} err.style.display='none';
-      const motivation=document.getElementById('vol-motivation').value.trim(), phone=document.getElementById('vol-phone').value.trim();
-      window.open(`mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer — '+name)}&body=${encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nSkill: '+skill+'\nAvailability: '+avail+'\n\nMotivation:\n'+motivation)}`,'_blank');
+      const name=document.getElementById('vol-name').value.trim(), email=document.getElementById('vol-email').value.trim(), phone=document.getElementById('vol-phone').value.trim(), lga=document.getElementById('vol-lga').value.trim(), state=document.getElementById('vol-state').value, skill=document.getElementById('vol-skill').value, avail=document.getElementById('vol-avail').value, motivation=document.getElementById('vol-motivation').value.trim(), err=document.getElementById('vol-error');
+      if(!name||!email||!phone||!lga||!state||!skill||!avail||!motivation){err.style.display='block';return;} err.style.display='none';
+      const experience=document.getElementById('vol-experience').value.trim();
+      const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
+      window.open(`mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer — '+name)}&body=${encodeURIComponent('Project ID: '+projectId+'\nName: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nLocal Government Area: '+lga+'\nState: '+state+'\nPreferred Role: '+skill+'\nAvailability: '+avail+'\n\nRelevant Experience:\n'+experience+'\n\nMotivation:\n'+motivation)}`,'_blank');
       document.getElementById('vol-form-wrap').style.display='none';
       document.getElementById('vol-success').style.display='block';
     }

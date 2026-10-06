@@ -18,7 +18,7 @@
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand" href="../index.html">
-        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo" style="max-height:40px;">
+        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo" style="max-height:40px;" loading="lazy" decoding="async">
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,8 +52,8 @@
             From school seminars and community health deployments to water infrastructure and vocational training — browse every initiative we have run, are running, and are planning across Nigeria and Africa.
           </p>
           <div class="hero-chips">
-            <span class="hero-chip"><i class="fa-solid fa-circle-check"></i> 5 Programmes</span>
-            <span class="hero-chip"><i class="fa-solid fa-circle-check"></i> 3 Active Right Now</span>
+            <span class="hero-chip"><i class="fa-solid fa-circle-check"></i> 6 Programmes</span>
+            <span class="hero-chip"><i class="fa-solid fa-circle-check"></i> 4 Active Right Now</span>
             <span class="hero-chip"><i class="fa-solid fa-circle-check"></i> 12,000+ Lives Reached</span>
           </div>
         </div>
@@ -83,6 +83,9 @@
         <button class="filter-pill" data-filter="skills">
           <i class="fa-solid fa-laptop-code"></i> Skill Acquisition
         </button>
+        <button class="filter-pill" data-filter="environmental">
+          <i class="fa-solid fa-leaf"></i> Environmental
+        </button>
       </div>
     </div>
   </div>
@@ -91,6 +94,27 @@
   <section class="projects-body">
     <div class="container">
       <div class="row g-4" id="projects-grid">
+
+        <!-- Lagos 20-LGA Environmental Pollution Programme -->
+        <div class="col-md-6 col-lg-4 project-item" data-status="active" data-category="environmental">
+          <a href="./project-details.html?id=lagos-pollution" class="text-decoration-none d-block h-100">
+            <div class="project-card">
+              <div class="card-img-wrap">
+                <img class="pollution-image" src="../assets/images/rest.png" alt="Lagos environmental pollution research and awareness programme" loading="lazy">
+                <span class="status-badge badge-active">Ongoing</span>
+                <span class="card-cat-tag"><i class="fa-solid fa-leaf me-1"></i> Environmental</span>
+              </div>
+              <div class="card-content">
+                <div class="card-title-text">Lagos 20-LGA Environmental Pollution Volunteer Research &amp; Awareness Programme</div>
+                <p class="card-desc">A volunteer-led research and public awareness programme mapping pollution concerns across all 20 LGAs of Lagos State.</p>
+                <div class="card-footer-row">
+                  <span class="card-meta" style="color:#2f855a;"><i class="fa-solid fa-leaf"></i> Environmental</span>
+                  <span class="btn-card btn-card-dark">Join Research <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
 
         <!-- My Body My Right -->
         <div class="col-md-6 col-lg-4 project-item" data-status="active" data-category="advocacy">
@@ -238,7 +262,7 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="">
+          <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="" loading="lazy" decoding="async">
           <p class="footer-org-name">Uccareforall Initiative</p>
           <p class="footer-tagline">Education · Empowerment · Excellence</p>
           <p class="footer-desc">We collaborate with schools, corporate sponsors, and local government frameworks to maximise our footprint across Nigeria and Africa.</p>
@@ -401,7 +425,8 @@
       const motivation = document.getElementById('vol-motivation').value.trim();
       const phone      = document.getElementById('vol-phone').value.trim();
       // TODO: replace with backend/Formspree endpoint
-      const mailto = `mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer Application — ' + name)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nSkill: ${skill}\nAvailability: ${avail}\n\nMotivation:\n${motivation}`)}`;
+      const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
+      const mailto = `mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer Application — ' + name)}&body=${encodeURIComponent(`Project ID: ${projectId}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSkill: ${skill}\nAvailability: ${avail}\n\nMotivation:\n${motivation}`)}`;
       window.open(mailto, '_blank');
 
       document.getElementById('vol-form-wrap').style.display = 'none';

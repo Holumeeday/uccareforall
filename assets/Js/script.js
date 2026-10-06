@@ -167,9 +167,11 @@ window.submitVolunteer = function () {
 
   const phone      = document.getElementById('vol-phone')      ? document.getElementById('vol-phone').value.trim()      : '';
   const motivation = document.getElementById('vol-motivation') ? document.getElementById('vol-motivation').value.trim() : '';
+  const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
 
   /* TODO: Replace with backend / Formspree endpoint */
-  const body = 'Name: '         + name
+  const body = 'Project ID: '   + projectId
+    + '\nName: '         + name
     + '\nEmail: '       + email
     + '\nPhone: '       + phone
     + '\nSkill: '       + skill
@@ -459,6 +461,25 @@ document.addEventListener('DOMContentLoaded', function () {
         '../assets/images/uc-medical/med-about.jpeg',
         '../assets/images/uc-medical/med-about2.jpg',
         '../assets/images/uc-medical/med-about4.jpg'
+      ]
+    },
+    'lagos-pollution': {
+      title:     'Lagos 20-LGA Environmental Pollution Volunteer Research & Awareness Programme',
+      tag:       'Environmental Research',
+      heroImage: '../assets/images/rest.jpeg',
+      lead:      'A volunteer-led programme to document environmental pollution concerns across all 20 Local Government Areas of Lagos State and turn field evidence into practical public awareness.',
+      body:      '<p>The Lagos 20-LGA Environmental Pollution Volunteer Research &amp; Awareness Programme is designed to build a clearer community-level picture of pollution across Lagos State. Volunteers will support structured observation, community conversations, and the collection of locally relevant information on environmental concerns affecting residents.</p><p>The programme will pair this research with accessible awareness activities, helping communities understand pollution risks, identify responsible everyday actions, and communicate priority concerns to relevant stakeholders. As the field programme develops, its findings will provide a practical foundation for targeted advocacy and future environmental interventions.</p>',
+      location:  'All 20 LGAs, Lagos State',
+      status:    'Active / Ongoing',
+      statusType:'active',
+      channels:  'Volunteer Research & Public Awareness',
+      stats: [
+        { value: 'Pending', label: 'Volunteers Recruited' },
+        { value: 'Pending', label: 'LGAs Covered' },
+        { value: 'Ongoing', label: 'Research & Awareness' }
+      ],
+      gallery: [
+        '../assets/images/rest.jpeg'
       ]
     },
     'tech-accelerator': {

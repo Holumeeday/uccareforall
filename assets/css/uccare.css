@@ -454,6 +454,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
 .project-item.hide { opacity: 0; pointer-events: none; height: 0; overflow: hidden; padding: 0; margin: 0; }
 .card-img-wrap { position: relative; overflow: hidden; height: 220px; flex-shrink: 0; }
 .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.card-img-wrap img.pollution-image { object-fit: contain; background: #f5f1e8; }
 .project-card:hover .card-img-wrap img { transform: scale(1.04); }
 .status-badge { position: absolute; top: 14px; right: 14px; padding: 0.3rem 0.85rem; border-radius: 50px; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
 .badge-active    { background: rgba(26,122,74,0.12);  color: #1a7a4a; border: 1px solid rgba(26,122,74,0.2); }
