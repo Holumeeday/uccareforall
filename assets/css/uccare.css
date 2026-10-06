@@ -488,7 +488,7 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
 /* ============================================================
    PROJECT DETAIL PAGE
    ============================================================ */
-.detail-hero { background-size: cover; background-position: center; min-height: 480px; display: flex; align-items: flex-end; position: relative; }
+.detail-hero { background-size: contain; background-position: center; background-repeat: no-repeat; background-color: #21170d; min-height: 480px; display: flex; align-items: flex-end; position: relative; }
 .detail-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,18,8,0.88) 0%, rgba(26,18,8,0.3) 55%, transparent 100%); }
 .detail-hero .hero-content { position: relative; z-index: 1; padding-bottom: 3rem; width: 100%; }
 .hero-tag-pill { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg, var(--red), var(--orange)); color: var(--white); border-radius: 50px; padding: 0.35rem 1rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.1rem; }
@@ -510,9 +510,9 @@ body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(
 .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1; margin-bottom: 0.4rem; }
 .stat-label { font-size: 0.68rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 6px; background: var(--border); cursor: pointer; }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
-.gallery-item:hover img { transform: scale(1.07); }
+.gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 6px; background: #f5f1e8; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.35s ease; }
+.gallery-item:hover img { transform: none; }
 .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.92); z-index: 9999; align-items: center; justify-content: center; padding: 1.5rem; }
 .lightbox-overlay.open { display: flex; }
 .lightbox-img { max-width: 90vw; max-height: 85vh; border-radius: 10px; object-fit: contain; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
