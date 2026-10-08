@@ -382,6 +382,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/Js/script.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -412,7 +413,7 @@
     });
 
     // ── Volunteer submit ──
-    function submitVolunteer() {
+    async function submitVolunteer() {
       const name  = document.getElementById('vol-name').value.trim();
       const email = document.getElementById('vol-email').value.trim();
       const skill = document.getElementById('vol-skill').value;
@@ -424,10 +425,14 @@
 
       const motivation = document.getElementById('vol-motivation').value.trim();
       const phone      = document.getElementById('vol-phone').value.trim();
-      // TODO: replace with backend/Formspree endpoint
       const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
-      const mailto = `mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer Application — ' + name)}&body=${encodeURIComponent(`Project ID: ${projectId}\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nSkill: ${skill}\nAvailability: ${avail}\n\nMotivation:\n${motivation}`)}`;
-      window.open(mailto, '_blank');
+      try {
+        await window.sendFormToInbox({ subject: 'Volunteer Application — ' + name, fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, Skill: skill, Availability: avail, Motivation: motivation, _replyto: email } });
+      } catch (error) {
+        err.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';
+        err.style.display = 'block';
+        return;
+      }
 
       document.getElementById('vol-form-wrap').style.display = 'none';
       document.getElementById('vol-success').style.display   = 'block';

@@ -8,6 +8,26 @@
    COPYRIGHT YEAR
    Runs on every page that has #year
 ════════════════════════════════════════ */
+/* Send a form to the organisation inbox through the verified Formspree endpoint. */
+window.sendFormToInbox = async function ({ subject, fields, fileInput }) {
+  const payload = new FormData();
+  payload.append('_subject', subject);
+  Object.entries(fields || {}).forEach(([key, value]) => {
+    payload.append(key, value == null || value === '' ? 'Not provided' : value);
+  });
+  if (fileInput && fileInput.files && fileInput.files[0]) {
+    payload.append('payment_proof', fileInput.files[0], fileInput.files[0].name);
+  }
+  const hasAttachment = fileInput && fileInput.files && fileInput.files[0];
+  const request = hasAttachment
+    ? { method: 'POST', body: payload, headers: { Accept: 'application/json' } }
+    : { method: 'POST', body: JSON.stringify(Object.fromEntries(payload.entries())), headers: { 'Content-Type': 'application/json', Accept: 'application/json' } };
+  const response = await fetch('https://formspree.io/f/mjygyngy', request);
+  const result = await response.json().catch(() => ({}));
+  if (!response.ok || result.success === false) throw new Error(result.message || 'Form delivery failed.');
+  return result;
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -123,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('contact-form');
   if (!form) return;
 
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const name    = document.getElementById('c-name').value.trim();
@@ -138,12 +158,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     errEl.style.display = 'none';
 
-    /* TODO: Replace with EmailJS / Formspree / backend endpoint */
-    const mailto = 'mailto:info@Uccareforall.com'
-      + '?subject=' + encodeURIComponent(subject)
-      + '&body='    + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-
-    window.location.href = mailto;
+    try {
+      await window.sendFormToInbox({ subject: subject, fields: { Name: name, email: email, Message: message, _replyto: email } });
+      form.reset();
+      alert('Thank you! Your message has been sent. We will be in touch within 48 hours.');
+    } catch (error) {
+      errEl.textContent = 'We could not send your message right now. Please try again or email info@uccareforall.com.';
+      errEl.style.display = 'block';
+    }
   });
 });
 
@@ -152,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
    VOLUNTEER MODAL SUBMIT
    Called by onclick="submitVolunteer()" in the modal HTML
 ════════════════════════════════════════ */
-window.submitVolunteer = function () {
+window.submitVolunteer = async function () {
   const name  = document.getElementById('vol-name')  ? document.getElementById('vol-name').value.trim()  : '';
   const email = document.getElementById('vol-email') ? document.getElementById('vol-email').value.trim() : '';
   const skill = document.getElementById('vol-skill') ? document.getElementById('vol-skill').value        : '';
@@ -169,20 +191,18 @@ window.submitVolunteer = function () {
   const motivation = document.getElementById('vol-motivation') ? document.getElementById('vol-motivation').value.trim() : '';
   const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
 
-  /* TODO: Replace with backend / Formspree endpoint */
-  const body = 'Project ID: '   + projectId
-    + '\nName: '         + name
-    + '\nEmail: '       + email
-    + '\nPhone: '       + phone
-    + '\nSkill: '       + skill
-    + '\nAvailability: '+ avail
-    + '\n\nMotivation:\n' + motivation;
-
-  const mailto = 'mailto:info@Uccareforall.com'
-    + '?subject=' + encodeURIComponent('Volunteer Application — ' + name)
-    + '&body='    + encodeURIComponent(body);
-
-  window.open(mailto, '_blank');
+  try {
+    await window.sendFormToInbox({
+      subject: 'Volunteer Application — ' + name,
+      fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, Skill: skill, Availability: avail, Motivation: motivation, _replyto: email }
+    });
+  } catch (error) {
+    if (errEl) {
+      errEl.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';
+      errEl.style.display = 'block';
+    }
+    return;
+  }
 
   const formWrap = document.getElementById('vol-form-wrap');
   const success  = document.getElementById('vol-success');
@@ -373,13 +393,25 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   /* Email submission */
-  window.submitViaEmail = function () {
+  window.submitViaEmail = async function () {
     if (!validate()) return;
-    const mailto = 'mailto:' + CONTACT_EMAIL
-      + '?subject=' + encodeURIComponent('Donation Proof — Uccareforall Initiative')
-      + '&body='    + encodeURIComponent(buildMessage() + '\n\n[Please attach your payment screenshot to this email]');
-    window.location.href = mailto;
-    showSuccess('email');
+    const button = document.querySelector('.email-ch');
+    if (button) button.disabled = true;
+    try {
+      await window.sendFormToInbox({
+        subject: 'Donation Proof — Uccareforall Initiative',
+        fields: { 'Donation details': buildMessage(), email: document.getElementById('donor-email').value.trim(), _replyto: document.getElementById('donor-email').value.trim() },
+        fileInput: document.getElementById('proof-file')
+      });
+      showSuccess('email');
+    } catch (error) {
+      const errTx = document.getElementById('error-text');
+      const errEl = document.getElementById('form-error');
+      errTx.textContent = 'We could not send your donation proof right now. Please try again or email info@uccareforall.com.';
+      errEl.style.display = 'block';
+    } finally {
+      if (button) button.disabled = false;
+    }
   };
 
   /* Success overlay */
@@ -389,7 +421,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (channel === 'whatsapp') {
       body.textContent = 'Your WhatsApp message has been opened with your donation details. Please attach your payment screenshot and hit send. We will confirm within 24 hours.';
     } else {
-      body.textContent = 'Your email client has opened. Please attach your payment screenshot and send. We will confirm your donation within 24 hours and send you a receipt.';
+      body.textContent = 'Your donation details and payment proof have been sent. We will confirm your donation within 24 hours and send you a receipt.';
     }
     if (overlay) overlay.classList.add('show');
   }

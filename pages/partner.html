@@ -844,13 +844,14 @@
   </div>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/Js/script.js"></script>
   <script>
     document.getElementById('year').innerText = new Date().getFullYear();
  
     // Partner form basic validation
     const pForm = document.getElementById('partner-form');
     if (pForm) {
-      pForm.addEventListener('submit', function(e) {
+      pForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const required = pForm.querySelectorAll('[required]');
         let valid = true;
@@ -858,9 +859,18 @@
         const errEl = document.getElementById('partner-form-error');
         if (!valid) { errEl.style.display = 'block'; return; }
         errEl.style.display = 'none';
-        // TODO: wire up to FormSubmit / EmailJS / backend
-        alert('Thank you! We will be in touch within 48 hours.');
-        pForm.reset();
+        try {
+          const fields = {};
+          pForm.querySelectorAll('input, select, textarea').forEach(el => { if (el.name) fields[el.name] = el.value.trim(); });
+          fields.email = fields.contact_email;
+          fields._replyto = fields.contact_email;
+          await window.sendFormToInbox({ subject: 'Partnership Proposal — ' + fields.organization_name, fields });
+          alert('Thank you! Your proposal has been sent. We will be in touch within 48 hours.');
+          pForm.reset();
+        } catch (error) {
+          errEl.textContent = 'We could not send your proposal right now. Please try again or email info@uccareforall.com.';
+          errEl.style.display = 'block';
+        }
       });
     }
  

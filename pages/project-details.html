@@ -317,6 +317,7 @@
   </div>
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/Js/script.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
  
@@ -438,12 +439,18 @@
     function shareWhatsApp(e) { e.preventDefault(); window.open('https://wa.me/?text='+encodeURIComponent('Check out this Uccareforall project: '+window.location.href),'_blank'); }
     function copyLink(e) { e.preventDefault(); navigator.clipboard.writeText(window.location.href).then(()=>{ const b=e.currentTarget; b.innerHTML='<i class="fa-solid fa-check" style="color:#1a7a4a;"></i> Copied!'; setTimeout(()=>{ b.innerHTML='<i class="fa-solid fa-link"></i> Copy Link'; },2000); }); }
  
-    function submitVolunteer() {
+    async function submitVolunteer() {
       const name=document.getElementById('vol-name').value.trim(), email=document.getElementById('vol-email').value.trim(), phone=document.getElementById('vol-phone').value.trim(), lga=document.getElementById('vol-lga').value.trim(), state=document.getElementById('vol-state').value, skill=document.getElementById('vol-skill').value, avail=document.getElementById('vol-avail').value, motivation=document.getElementById('vol-motivation').value.trim(), err=document.getElementById('vol-error');
       if(!name||!email||!phone||!lga||!state||!skill||!avail||!motivation){err.style.display='block';return;} err.style.display='none';
       const experience=document.getElementById('vol-experience').value.trim();
       const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
-      window.open(`mailto:info@Uccareforall.com?subject=${encodeURIComponent('Volunteer — '+name)}&body=${encodeURIComponent('Project ID: '+projectId+'\nName: '+name+'\nEmail: '+email+'\nPhone: '+phone+'\nLocal Government Area: '+lga+'\nState: '+state+'\nPreferred Role: '+skill+'\nAvailability: '+avail+'\n\nRelevant Experience:\n'+experience+'\n\nMotivation:\n'+motivation)}`,'_blank');
+      try {
+        await window.sendFormToInbox({ subject: 'Volunteer — ' + name + (projectId === 'lagos-pollution' ? ' — Lagos Pollution Programme' : ''), fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, 'Local Government Area': lga, State: state, 'Preferred Role': skill, Availability: avail, 'Relevant Experience': experience, Motivation: motivation, _replyto: email } });
+      } catch (error) {
+        err.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';
+        err.style.display = 'block';
+        return;
+      }
       document.getElementById('vol-form-wrap').style.display='none';
       document.getElementById('vol-success').style.display='block';
     }
