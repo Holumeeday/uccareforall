@@ -171,8 +171,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* ════════════════════════════════════════
-   VOLUNTEER MODAL SUBMIT
-   Called by onclick="submitVolunteer()" in the modal HTML
+   VOLUNTEER APPLICATION SUBMIT
+   Called by onclick="submitVolunteer()" on the application page
 ════════════════════════════════════════ */
 window.submitVolunteer = async function () {
   const name  = document.getElementById('vol-name')  ? document.getElementById('vol-name').value.trim()  : '';
@@ -181,21 +181,27 @@ window.submitVolunteer = async function () {
   const avail = document.getElementById('vol-avail') ? document.getElementById('vol-avail').value        : '';
   const errEl = document.getElementById('vol-error');
 
-  if (!name || !email || !skill || !avail) {
+  const phone      = document.getElementById('vol-phone')      ? document.getElementById('vol-phone').value.trim()      : '';
+  const lga        = document.getElementById('vol-lga')        ? document.getElementById('vol-lga').value        : '';
+  const state      = document.getElementById('vol-state')      ? document.getElementById('vol-state').value      : '';
+  const motivation = document.getElementById('vol-motivation') ? document.getElementById('vol-motivation').value.trim() : '';
+  const experience = document.getElementById('vol-experience') ? document.getElementById('vol-experience').value.trim() : '';
+
+  if (!name || !email || !phone || !lga || !state || !skill || !avail || !motivation) {
     if (errEl) errEl.style.display = 'block';
     return;
   }
   if (errEl) errEl.style.display = 'none';
 
-  const phone      = document.getElementById('vol-phone')      ? document.getElementById('vol-phone').value.trim()      : '';
-  const motivation = document.getElementById('vol-motivation') ? document.getElementById('vol-motivation').value.trim() : '';
   const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
+  const application = { project_id: projectId, name, email, phone, local_government_area: lga, state, preferred_role: skill, availability: avail, relevant_experience: experience, motivation };
 
   try {
-    await window.sendFormToInbox({
-      subject: 'Volunteer Application — ' + name,
-      fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, Skill: skill, Availability: avail, Motivation: motivation, _replyto: email }
-    });
+    if (window.UCCARE_VOLUNTEERS && window.UCCARE_VOLUNTEERS.configured) {
+      await window.UCCARE_VOLUNTEERS.save(application);
+    } else {
+      await window.sendFormToInbox({ subject: 'Volunteer Application — ' + name, fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, 'Local Government Area': lga, State: state, 'Preferred Role': skill, Availability: avail, 'Relevant Experience': experience, Motivation: motivation, _replyto: email } });
+    }
   } catch (error) {
     if (errEl) {
       errEl.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';

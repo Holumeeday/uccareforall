@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uccareforall| Projects</title>
+  <title>Projects | Uccareforall Initiative</title>
+  <meta name="description" content="Explore Uccareforall Initiative's active and completed community projects across education, healthcare, environment and empowerment.">
   <link rel="stylesheet" href="../assets/css/uccare.css">
    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -18,7 +18,7 @@
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container">
       <a class="navbar-brand" href="../index.html">
-        <img src="../assets/images/uc-logo.png" alt="Uccareforall Logo" style="max-height:40px;" loading="lazy" decoding="async">
+        <img src="../assets/images/uc-logo-transparent.png" alt="Uccareforall Logo" style="max-height:40px;" loading="lazy" decoding="async">
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,7 +32,7 @@
         </ul>
       </div>
       <div class="navbar-right d-none d-lg-block">
-          <a href="./pages/donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2" style="color: #fff;">
+          <a href="./donate.html" class="btn footer-schedule-btn text-decoration-none d-inline-flex align-items-center gap-2" style="color: #fff;">
             <i class="fa-solid fa-heart" aria-hidden="true" style="color: #fff;"></i> Donate
           </a>
       </div> 
@@ -89,6 +89,14 @@
       </div>
     </div>
   </div>
+
+  <section class="projects-body managed-projects-section" id="managed-projects-section" hidden>
+    <div class="container">
+      <span class="eyebrow">Latest from operations</span>
+      <h2 class="section-title">Current programmes</h2>
+      <div class="row g-4" id="managed-projects-grid"></div>
+    </div>
+  </section>
 
   <!-- ── Projects Grid ── -->
   <section class="projects-body">
@@ -250,9 +258,9 @@
         <a href="./partner.html" class="btn-cta-primary">
           <i class="fa-solid fa-handshake"></i> Partner With Us
         </a>
-        <button class="btn-cta-ghost" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+        <a class="btn-cta-ghost" href="./volunteer-application.html">
           <i class="fa-solid fa-user-plus"></i> Apply to Volunteer
-        </button>
+        </a>
       </div>
     </div>
   </section>
@@ -262,10 +270,10 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-4">
-          <img src="../assets/images/uc-logo.png" style="width: 30%;" alt="Uccareforall" class="" loading="lazy" decoding="async">
+          <img src="../assets/images/uc-logo-transparent.png" style="width: 30%;" alt="Uccareforall" class="" loading="lazy" decoding="async">
           <p class="footer-org-name">Uccareforall Initiative</p>
           <p class="footer-tagline">Education · Empowerment · Excellence</p>
-          <p class="footer-desc">We collaborate with schools, corporate sponsors, and local government frameworks to maximise our footprint across Nigeria and Africa.</p>
+          <p class="footer-desc">Together with schools, corporate partners, and public institutions, we turn community needs into practical programmes that create lasting impact.</p>
         </div>
         <div class="col-6 col-lg-2 offset-lg-1">
           <p class="footer-col-title">Navigate</p>
@@ -278,8 +286,9 @@
         <div class="col-6 col-lg-2">
           <p class="footer-col-title">Support</p>
           <a class="footer-link" href="./donate.html">Donate</a>
-          <a class="footer-link" href="#" data-bs-toggle="modal" data-bs-target="#volunteerModal">Volunteer</a>
+          <a class="footer-link" href="./volunteer-application.html">Volunteer</a>
           <a class="footer-link" href="./partner.html">Partner With Us</a>
+          <a class="footer-link" href="./admin.html">Operations Login</a>
         </div>
        
             <p class="footer-col-title text-lg-end">Follow Us</p>
@@ -307,84 +316,24 @@
     </div>
   </footer>
 
-  <!-- ── Volunteer Modal ── -->
-  <div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header-band">
-          <h5 id="volunteerModalLabel">Apply to Volunteer</h5>
-          <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-        <div class="modal-body-inner">
-          <div id="vol-form-wrap">
-            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;margin-bottom:1.75rem;">
-              We need passionate people on the ground — doctors, teachers, photographers, students. Tell us about yourself and we'll reach out before every field deployment.
-            </p>
-            <div class="vol-row">
-              <div class="vol-field">
-                <label>Full Name *</label>
-                <input type="text" id="vol-name" placeholder="Your full name">
-              </div>
-              <div class="vol-field">
-                <label>Email *</label>
-                <input type="email" id="vol-email" placeholder="your@email.com">
-              </div>
-            </div>
-            <div class="vol-row">
-              <div class="vol-field">
-                <label>Phone</label>
-                <input type="tel" id="vol-phone" placeholder="+234...">
-              </div>
-              <div class="vol-field">
-                <label>Skill / Profession *</label>
-                <select id="vol-skill">
-                  <option value="" disabled selected>Select your background</option>
-                  <option>Medical Doctor / Nurse / Health Worker</option>
-                  <option>Teacher / Educator</option>
-                  <option>Photographer / Videographer</option>
-                  <option>Digital Marketer / Social Media</option>
-                  <option>Student</option>
-                  <option>Logistics / Operations</option>
-                  <option>Legal / Admin</option>
-                  <option>Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="vol-field">
-              <label>Availability *</label>
-              <select id="vol-avail">
-                <option value="" disabled selected>When can you join a deployment?</option>
-                <option>Weekends only</option>
-                <option>Weekdays only</option>
-                <option>Both weekdays and weekends</option>
-                <option>Flexible — notify me when needed</option>
-              </select>
-            </div>
-            <div class="vol-field">
-              <label>Why do you want to volunteer?</label>
-              <textarea id="vol-motivation" placeholder="Tell us what drives you..."></textarea>
-            </div>
-            <div id="vol-error" style="display:none;color:var(--red);font-size:0.8rem;margin-bottom:0.75rem;">Please fill in all required fields.</div>
-            <button class="btn-vol-submit" onclick="submitVolunteer()">
-              <i class="fa-solid fa-user-plus"></i> Submit Application
-            </button>
-          </div>
-          <div class="vol-success" id="vol-success">
-            <div class="vol-success-ring"><i class="fa-solid fa-check"></i></div>
-            <p class="vol-success-title">You're on the list.</p>
-            <p class="vol-success-body">Thank you for signing up. We'll send you an invite before every upcoming field deployment. Welcome to the movement.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/Js/supabase-config.js"></script>
+  <script src="../assets/Js/volunteer-data.js"></script>
   <script src="../assets/Js/script.js"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function loadManagedProjects() {
+      const source = window.UCCARE_VOLUNTEERS;
+      if (!source || !source.configured) return;
+      const { data } = await source.client.from('projects').select('slug,title,tag,lead,status,location,hero_image,volunteers_needed,volunteers_recruited,completion_percentage').eq('published', true).order('created_at', { ascending: false });
+      if (!data || !data.length) return;
+      const section = document.getElementById('managed-projects-section');
+      document.getElementById('managed-projects-grid').innerHTML = data.map(project => `<div class="col-md-6 col-lg-4"><a href="./project-details.html?id=${encodeURIComponent(project.slug)}" class="text-decoration-none d-block h-100"><div class="project-card"><div class="card-img-wrap">${project.hero_image ? `<img src="${project.hero_image}" alt="${project.title}" loading="lazy">` : ''}<span class="status-badge badge-active">${project.status}</span><span class="card-cat-tag">${project.tag}</span></div><div class="card-content"><div class="card-title-text">${project.title}</div><p class="card-desc">${project.lead || 'View this programme and its current progress.'}</p><div class="card-footer-row"><span class="card-meta">${project.volunteers_recruited} / ${project.volunteers_needed} volunteers</span><span class="btn-card btn-card-dark">View <i class="fa-solid fa-arrow-right"></i></span></div></div></div></a></div>`).join('');
+      section.hidden = false;
+    }
+    loadManagedProjects();
 
     // ── Filter logic ──
     const pills    = document.querySelectorAll('.filter-pill');
@@ -412,31 +361,6 @@
       });
     });
 
-    // ── Volunteer submit ──
-    async function submitVolunteer() {
-      const name  = document.getElementById('vol-name').value.trim();
-      const email = document.getElementById('vol-email').value.trim();
-      const skill = document.getElementById('vol-skill').value;
-      const avail = document.getElementById('vol-avail').value;
-      const err   = document.getElementById('vol-error');
-
-      if (!name || !email || !skill || !avail) { err.style.display = 'block'; return; }
-      err.style.display = 'none';
-
-      const motivation = document.getElementById('vol-motivation').value.trim();
-      const phone      = document.getElementById('vol-phone').value.trim();
-      const projectId = new URLSearchParams(window.location.search).get('id') || 'sitewide-volunteer';
-      try {
-        await window.sendFormToInbox({ subject: 'Volunteer Application — ' + name, fields: { 'Project ID': projectId, Name: name, email: email, Phone: phone, Skill: skill, Availability: avail, Motivation: motivation, _replyto: email } });
-      } catch (error) {
-        err.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';
-        err.style.display = 'block';
-        return;
-      }
-
-      document.getElementById('vol-form-wrap').style.display = 'none';
-      document.getElementById('vol-success').style.display   = 'block';
-    }
   </script>
 </body>
 </html>
