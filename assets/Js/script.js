@@ -504,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function () {
     'lagos-pollution': {
       title:     'Lagos 20-LGA Environmental Pollution Volunteer Research & Awareness Programme',
       tag:       'Environmental Research',
-      heroImage: '../assets/images/rest.jpeg',
+      heroImage: '../assets/images/awareness.jpeg',
       lead:      'A volunteer-led programme to document environmental pollution concerns across all 20 Local Government Areas of Lagos State and turn field evidence into practical public awareness.',
       body:      '<p>The Lagos 20-LGA Environmental Pollution Volunteer Research &amp; Awareness Programme is designed to build a clearer community-level picture of pollution across Lagos State. Volunteers will support structured observation, community conversations, and the collection of locally relevant information on environmental concerns affecting residents.</p><p>The programme will pair this research with accessible awareness activities, helping communities understand pollution risks, identify responsible everyday actions, and communicate priority concerns to relevant stakeholders. As the field programme develops, its findings will provide a practical foundation for targeted advocacy and future environmental interventions.</p>',
       location:  'All 20 LGAs, Lagos State',
@@ -517,7 +517,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { value: 'Ongoing', label: 'Research & Awareness' }
       ],
       gallery: [
-        '../assets/images/rest.jpeg'
+        '../assets/images/awareness.jpeg'
       ]
     },
     'tech-accelerator': {
@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     galleryImages = r.gallery;
     document.getElementById('project-gallery-grid').innerHTML = r.gallery.map(function (src, i) {
-      return '<div class="gallery-item" onclick="openLightbox(' + i + ')"><img src="' + src + '" alt="Field photo ' + (i + 1) + '" loading="lazy"></div>';
+      return '<div class="gallery-item" onclick="openLightbox(' + i + ')"><img src="' + src + '" alt="Field photo ' + (i + 1) + '" loading="lazy" decoding="async"></div>';
     }).join('');
   }
 

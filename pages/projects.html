@@ -108,7 +108,7 @@
           <a href="./project-details.html?id=lagos-pollution" class="text-decoration-none d-block h-100">
             <div class="project-card">
               <div class="card-img-wrap">
-                <img class="pollution-image" src="../assets/images/rest.png" alt="Lagos environmental pollution research and awareness programme" loading="lazy">
+                <img class="pollution-image" src="../assets/images/awareness.jpeg" alt="Lagos environmental pollution research and awareness programme" loading="lazy">
                 <span class="status-badge badge-active">Ongoing</span>
                 <span class="card-cat-tag"><i class="fa-solid fa-leaf me-1"></i> Environmental</span>
               </div>
@@ -330,7 +330,7 @@
       const { data } = await source.client.from('projects').select('slug,title,tag,lead,status,location,hero_image,volunteers_needed,volunteers_recruited,completion_percentage').eq('published', true).order('created_at', { ascending: false });
       if (!data || !data.length) return;
       const section = document.getElementById('managed-projects-section');
-      document.getElementById('managed-projects-grid').innerHTML = data.map(project => `<div class="col-md-6 col-lg-4"><a href="./project-details.html?id=${encodeURIComponent(project.slug)}" class="text-decoration-none d-block h-100"><div class="project-card"><div class="card-img-wrap">${project.hero_image ? `<img src="${project.hero_image}" alt="${project.title}" loading="lazy">` : ''}<span class="status-badge badge-active">${project.status}</span><span class="card-cat-tag">${project.tag}</span></div><div class="card-content"><div class="card-title-text">${project.title}</div><p class="card-desc">${project.lead || 'View this programme and its current progress.'}</p><div class="card-footer-row"><span class="card-meta">${project.volunteers_recruited} / ${project.volunteers_needed} volunteers</span><span class="btn-card btn-card-dark">View <i class="fa-solid fa-arrow-right"></i></span></div></div></div></a></div>`).join('');
+      document.getElementById('managed-projects-grid').innerHTML = data.map(project => `<div class="col-md-6 col-lg-4"><a href="./project-details.html?id=${encodeURIComponent(project.slug)}" class="text-decoration-none d-block h-100"><div class="project-card"><div class="card-img-wrap">${project.hero_image ? `<img src="${project.hero_image}" alt="${project.title}" loading="lazy" decoding="async">` : ''}<span class="status-badge badge-active">${project.status}</span><span class="card-cat-tag">${project.tag}</span></div><div class="card-content"><div class="card-title-text">${project.title}</div><p class="card-desc">${project.lead || 'View this programme and its current progress.'}</p><div class="card-footer-row"><span class="card-meta">${project.volunteers_recruited} / ${project.volunteers_needed} volunteers</span><span class="btn-card btn-card-dark">View <i class="fa-solid fa-arrow-right"></i></span></div></div></div></a></div>`).join('');
       section.hidden = false;
     }
     loadManagedProjects();
