@@ -23,6 +23,47 @@ alter table public.volunteer_applications add column if not exists deployment_at
 alter table public.volunteer_applications add column if not exists volunteer_hours numeric(8,2) not null default 0;
 alter table public.volunteer_applications add column if not exists assigned_role text;
 
+-- Prevent the same volunteer from registering more than once. Email matching is
+-- case-insensitive and phone matching ignores spaces, punctuation and country-code formatting.
+create or replace function public.prevent_duplicate_volunteer_application()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  normalized_email text := lower(trim(new.email));
+  normalized_phone text := regexp_replace(coalesce(new.phone, ''), '[^0-9]', '', 'g');
+begin
+  if exists (
+    select 1
+    from public.volunteer_applications existing
+    where existing.id is distinct from new.id
+      and lower(trim(existing.email)) = normalized_email
+  ) then
+    raise exception 'A volunteer application with this email address is already registered.'
+      using errcode = '23505';
+  end if;
+
+  if normalized_phone <> '' and exists (
+    select 1
+    from public.volunteer_applications existing
+    where existing.id is distinct from new.id
+      and regexp_replace(coalesce(existing.phone, ''), '[^0-9]', '', 'g') = normalized_phone
+  ) then
+    raise exception 'A volunteer application with this phone number is already registered.'
+      using errcode = '23505';
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists prevent_duplicate_volunteer_application on public.volunteer_applications;
+create trigger prevent_duplicate_volunteer_application
+  before insert or update of email, phone on public.volunteer_applications
+  for each row execute function public.prevent_duplicate_volunteer_application();
+
 create table if not exists public.projects (
   id uuid primary key default gen_random_uuid(),
   slug text unique not null,

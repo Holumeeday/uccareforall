@@ -204,7 +204,10 @@ window.submitVolunteer = async function () {
     }
   } catch (error) {
     if (errEl) {
-      errEl.textContent = 'We could not send your application right now. Please try again or email info@uccareforall.com.';
+      const message = String(error && error.message || '').toLowerCase();
+      errEl.textContent = message.includes('already registered')
+        ? 'You are already registered as a volunteer with this email address or phone number.'
+        : 'We could not send your application right now. Please try again or email info@uccareforall.com.';
       errEl.style.display = 'block';
     }
     return;
